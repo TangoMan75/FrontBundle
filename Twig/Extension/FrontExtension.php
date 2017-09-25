@@ -86,11 +86,10 @@ class FrontExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function searchFormFunction($form, $template = 'search')
+    public function searchFormFunction($form, $template = 'search-form')
     {
         $templates = [
-            'search',
-            'default',
+            'search-form'
         ];
 
         if (in_array($template, $templates)) {

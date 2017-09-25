@@ -1,4 +1,4 @@
-{% if is_granted(app.user.roles, menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
+{% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if start_with(app.request.attributes.get('_route'), menu.pages ?? []) %}
         <div id="tabs">
             <ul class="nav nav-tabs">

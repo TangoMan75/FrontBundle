@@ -1,4 +1,4 @@
-{% if is_granted(app.user.roles, menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
+{% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if start_with(app.request.attributes.get('_route'), menu.pages ?? []) %}
         <nav class="navbar navbar-default">
             <ul class="nav nav-pills nav-stacked">
