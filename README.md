@@ -34,6 +34,8 @@ Elements can
  - trigger accordion
  - submit form onchange
 
+Every label or name attibute is automatically translated.
+
 You can easilly create your own template as well.
 
 Installation
