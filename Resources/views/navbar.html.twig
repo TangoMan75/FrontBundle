@@ -167,19 +167,27 @@
                                 <li{% if app.request.attributes.get('_route') ends with 'show' %} class="active"{% endif %}>
                                     <a href="{{ path('app_user_show', { 'slug': app.user.slug }) }}">
                                         <span class="glyphicon glyphicon-user"></span>
-                                        Voir mon profil
+                                        {{ 'tangoman.show_my_profile'|trans }}
                                     </a>
                                 </li>
                                 <li{% if app.request.attributes.get('_route') ends with 'edit' %} class="active"{% endif %}>
                                     <a href="{{ path('app_user_edit', { 'slug': app.user.slug }) }}">
                                         <span class="glyphicon glyphicon-edit"></span>
-                                        Modifier mon profil
+                                        {{ 'tangoman.edit_my_profile'|trans }}
                                     </a>
                                 </li>
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    <li>
+                                        <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">
+                                            <span class="glyphicon glyphicon-refresh"></span>
+                                            {{ 'tangoman.quit_impersonation'|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %}
                                 <li>
                                     <a href="{{ path('app_logout') }}">
                                         <span class="glyphicon glyphicon-off"></span>
-                                        Déconnexion
+                                        {{ 'tangoman.logout'|trans }}
                                     </a>
                                 </li>
                             </ul>
@@ -187,12 +195,12 @@
                     {% else %}
                         <li><a href="{{ path('app_security_register') }}">
                                 <span class="glyphicon glyphicon-floppy-disk"></span>
-                                Inscription
+                                {{ 'tangoman.register'|trans }}
                             </a>
                         </li>
                         <li><a href="{{ path('app_login') }}">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                Connexion
+                                {{ 'tangoman.login'|trans }}
                             </a>
                         </li>
                     {% endif %}
