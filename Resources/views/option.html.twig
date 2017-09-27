@@ -1,7 +1,7 @@
 {% if is_granted(option.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if start_with(app.request.attributes.get('_route'), option.pages ?? []) %}
         <option value="{{ option.value }}"{% if app.request.get(input.name) == option.value %} selected{% endif %}{% if option.disabled is defined and option.disabled %} disabled="disabled"{% endif %}>
-            {{ option.name }}
+            {{ option.name|trans }}
         </option>
     {% endif %}
 {% endif %}
