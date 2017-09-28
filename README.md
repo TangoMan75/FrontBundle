@@ -378,6 +378,36 @@ If you get to see this :
 ![twig error][twig-error]
 your json probably is invalid.
 
+TODO
+====
+
+| Title | toggle | parameters |
+| Modals | data-toogle="modal" | data-target |
+| Dropdowns | data-toggle="dropdown" |  |
+| Togglable tabs | data-toggle="tab" |  |
+| Togglable pills | data-toggle="pill" |  |
+| Tooltips | data-toggle="tooltip" | data-original-title data-placement title |
+| Popovers | data-toggle="popover" data-placement data-trigger data-content title |
+| Button | data-toggle="button" |  |
+| Buttons | data-toggle="buttons" |  |
+| Collapse | data-toggle="collapse" | data-target data-parent href |
+
+```json
+"popover": {
+	"title": "blablaba",
+	"content": "Blablabla"
+}
+```
+```json
+"modal": {
+	"title": "blablaba",
+	"header": "blablaba",
+	"body": "Blablabla",
+	"footer": "blabla"
+}
+```
+
+
 Note
 ====
 

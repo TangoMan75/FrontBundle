@@ -2,15 +2,11 @@
     {% if start_with(app.request.attributes.get('_route'), link.pages ?? []) %}
         <a
                 {% if link.route is defined and link.route %}
-                    {# ID AND SLUG PARAMETERS HAVE AUTO CALLBACK #}
-                    {% if link.callback is defined and link.callback %}
-                        href="{{ path(link.route, { 'callback': app.request.uri|callback }) }}"
-                    {% elseif link.id is defined and link.id %}
-                        href="{{ path(link.route, { 'id': link.id, 'callback': app.request.uri|callback }) }}"
-                    {% elseif link.slug is defined and link.slug %}
-                        href="{{ path(link.route, { 'slug': link.parameter.slug, 'callback': app.request.uri|callback }) }}"
-                    {% elseif link.anchor is defined and link.anchor %}
-                        href="{{ link.anchor }}"
+                    {# APPEND PARAMETERS TO QUERY STRING #}
+                    {% if link.parameters is defined and link.parameters %}
+                        {% for key, value in link.parameters|to_array %}
+                            href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters|to_array))) }}"
+                        {% endfor %}
                     {% else %}
                         href="{{ path(link.route) }}"
                     {% endif %}
@@ -22,8 +18,10 @@
                     data-toggle="tooltip" data-placement="top"
                     data-original-title="{{ link.tooltip }}"
                 {% endif %}
-                {% if link.data.key is defined and link.data.key %}
-                    data-{{ link.data.key }}="{{ link.data.value ?? '' }}"
+                {% if link.data is defined and link.data %}
+                    {% for key, value in link.data|to_array %}
+                        data-{{ key }}="{{ value }}"
+                    {% endfor %}
                 {% endif %}
         >
             {% if link.icon is defined and link.icon %}

@@ -1,5 +1,14 @@
-{#{% set button_data = button.data|merge({"key":"foo","value":"bar"}) %}#}
-{#{% set button = button|merge({"data":button_data}) %}#}
+{% set tangomanData = [] %}
+{% if button.tooltip is defined and button.tooltip %}
+    {% set tangomanData = ('{"toggle": "tooltip","placement": "top","original-title": "'~button.tooltip~'"}')|to_array %}
+{% endif %}
+{% if button.toggle is defined and button.toggle %}
+    {% set tangomanData = ('{"toggle": "'~button.toggle~'"}')|to_array %}
+{% endif %}
+{% if button.data is defined and button.data %}
+    {% set tangomanData = tangomanData|merge(button.data|to_array) %}
+{% endif %}
+{{ dump(tangomanData) }}
 {% if is_granted(button.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
     {% if button.toggle is defined and button.toggle and button.tooltip is defined and button.tooltip %}
@@ -22,17 +31,11 @@
     {% if button.route is defined and button.route %}
         {# WHEN MODAL REPLACE HREF WITH DATA-HREF ATTRIBUTE #}
         {% if button.toggle is defined and button.toggle == 'modal' %}{% set dataHref = 'data-href' %}{% endif %}
-        {# ID AND SLUG HAVE AUTO CALLBACK #}
-        {% if button.callback is defined and button.callback %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route, { 'callback': app.request.uri|callback }) }}"
-        {% elseif button.id is defined and button.id %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route, { 'id': button.id, 'callback': app.request.uri|callback }) }}"
-        {% elseif button.slug is defined and button.slug %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route, { 'slug': button.slug, 'callback': app.request.uri|callback }) }}"
-        {% elseif button._switch_user is defined and button._switch_user %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route, { '_switch_user': button._switch_user }) }}"
-        {% else %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route) }}"
+        {# APPEND PARAMETERS TO QUERY STRING #}
+        {% if button.parameters is defined and button.parameters %}
+            {% for key, value in button.parameters|to_array %}
+                {{ dataHref ?? 'href' }}="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters|to_array))) }}"
+            {% endfor %}
         {% endif %}
     {% endif %}
     class="{{ button.class ?? 'btn btn-primary' }}"
@@ -46,9 +49,9 @@
         data-toggle="tooltip" data-placement="top"
         data-original-title="{{ button.tooltip }}"
     {% endif %}
-    {% if button.data is defined and button.data %}
-        {% for item in button.data %}
-            data-{{ item.key }}="{{ item.value ?? '' }}"
+    {% if tangomanData is defined and tangomanData %}
+        {% for key, value in tangomanData|to_array %}
+            data-{{ key }}="{{ value }}"
         {% endfor %}
     {% endif %}
     {% if button.disabled is defined and button.disabled %}
