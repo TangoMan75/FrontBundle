@@ -28,7 +28,9 @@
         {% elseif button.id is defined and button.id %}
             {{ dataHref ?? 'href' }}="{{ path(button.route, { 'id': button.id, 'callback': app.request.uri|callback }) }}"
         {% elseif button.slug is defined and button.slug %}
-            {{ dataHref ?? 'href' }}="{{ path(button.route, { 'slug': button.parameter.slug, 'callback': app.request.uri|callback }) }}"
+            {{ dataHref ?? 'href' }}="{{ path(button.route, { 'slug': button.slug, 'callback': app.request.uri|callback }) }}"
+        {% elseif button._switch_user is defined and button._switch_user %}
+            {{ dataHref ?? 'href' }}="{{ path(button.route, { '_switch_user': button._switch_user }) }}"
         {% else %}
             {{ dataHref ?? 'href' }}="{{ path(button.route) }}"
         {% endif %}
