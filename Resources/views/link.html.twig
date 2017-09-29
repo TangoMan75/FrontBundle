@@ -1,35 +1,58 @@
 {% if is_granted(link.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if start_with(app.request.attributes.get('_route'), link.pages ?? []) %}
+
+        {% set toggleFlag = false %}
+        {% if link.data is defined and link.data %}
+            {% for key, value in link.data %}
+                {% if key == 'toggle' %}{% set toggleFlag = true %}{% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% set tempData = [] %}
+        {% if link.tooltip is defined and link.tooltip %}
+            {% set tempData = ('{"toggle": "tooltip", "placement": "top", "original-title": "'~link.tooltip~'"}')|to_array %}
+        {% endif %}
+
+        {% if link.popover is defined and link.popover %}
+            {% set tempData = ('{"toggle": "popover", "placement": "top", "trigger": "focus", "title": "'~link.label~'", "content": "'~link.popover~'"}')|to_array %}
+        {% endif %}
+
+        {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
+        {% if link.data is defined and link.data and link.tooltip is defined and link.tooltip %}
+            <span style="display: inline-block;"
+            data-toggle="tooltip" data-placement="top"
+            data-original-title="{{ link.tooltip }}"
+            >
+        {% endif %}
         <a
-                {% if link.route is defined and link.route %}
-                    {# APPEND PARAMETERS TO QUERY STRING #}
-                    {% if link.parameters is defined and link.parameters %}
-                        {% for key, value in link.parameters|to_array %}
-                            href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters|to_array))) }}"
-                        {% endfor %}
-                    {% else %}
-                        href="{{ path(link.route) }}"
-                    {% endif %}
-                {% endif %}
-                {% if link.class is defined and link.class %}
-                    class="{{ link.class }}"
-                {% endif %}
-                {% if link.tooltip is defined and link.tooltip %}
-                    data-toggle="tooltip" data-placement="top"
-                    data-original-title="{{ link.tooltip }}"
-                {% endif %}
-                {% if link.data is defined and link.data %}
-                    {% for key, value in link.data|to_array %}
-                        data-{{ key }}="{{ value }}"
+            {% if link.route is defined and link.route %}
+                {% if link.parameters is defined and link.parameters %}
+                    {% for key, value in link.parameters|to_array %}
+                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters|to_array))) }}"
                     {% endfor %}
+                {% else %}
+                    href="{{ path(link.route) }}"
                 {% endif %}
-        >
+            {% endif %}
+
+            {% if link.class is defined and link.class %}
+                class="{{ link.class }}"
+            {% endif %}
+
+            {% if data is defined and data not null %}
+                {% for key, value in data|to_array %}
+                    data-{{ data.key }}="{{ data.value }}"
+                {% endfor %}
+            {% endif %}
+    >
             {% if link.icon is defined and link.icon %}
                 <span class="{{ link.icon }}"></span>
             {% endif %}
-            {% if link.label is defined and link.label %}
-                {{ link.label|trans }}
-            {% endif %}
+
+        {% if link.label is defined and link.label %}
+            {{ link.label|trans }}
+        {% endif %}
         </a>
     {% endif %}
+
 {% endif %}

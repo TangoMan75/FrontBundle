@@ -43,6 +43,9 @@ class FrontExtension extends \Twig_Extension
                 'thead', [$this, 'theadFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
+                'button', [$this, 'buttonFunction'], ['is_safe' => ['html']]
+            ),
+            new \Twig_SimpleFunction(
                 'buttons', [$this, 'buttonsFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
@@ -89,7 +92,7 @@ class FrontExtension extends \Twig_Extension
     public function searchFormFunction($form, $template = 'search-form')
     {
         $templates = [
-            'search-form'
+            'search-form',
         ];
 
         if (in_array($template, $templates)) {

@@ -382,6 +382,7 @@ TODO
 ====
 
 | Title | toggle | parameters |
+| ----- | ------ | ---------- |
 | Modals | data-toogle="modal" | data-target |
 | Dropdowns | data-toggle="dropdown" |  |
 | Togglable tabs | data-toggle="tab" |  |
@@ -393,11 +394,16 @@ TODO
 | Collapse | data-toggle="collapse" | data-target data-parent href |
 
 ```json
+"popover": "Blablabla"
+```
+
+```json
 "popover": {
 	"title": "blablaba",
 	"content": "Blablabla"
 }
 ```
+
 ```json
 "modal": {
 	"title": "blablaba",
