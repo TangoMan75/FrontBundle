@@ -14,7 +14,7 @@ class FrontExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'tangoman_listmanager';
+        return 'tangoman_front';
     }
 
     /**
@@ -43,14 +43,21 @@ class FrontExtension extends \Twig_Extension
                 'thead', [$this, 'theadFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
-                'button', [$this, 'buttonFunction'], ['is_safe' => ['html']]
-            ),
-            new \Twig_SimpleFunction(
                 'buttons', [$this, 'buttonsFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
                 'modal', [$this, 'modalFunction'], ['is_safe' => ['html']]
             ),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getFilters()
+    {
+        return [
+            new \Twig_SimpleFilter('tooltip', [$this, 'tooltipFunction']),
         ];
     }
 
@@ -193,5 +200,27 @@ class FrontExtension extends \Twig_Extension
                 'buttonGroup' => $buttonGroup,
             ]
         );
+    }
+
+    /**
+     * Cache tooltip settings from button / link object
+     * 
+     * @param array $data
+     *
+     * @return array / null
+     */
+    public function tooltipFunction($data)
+    {
+        $tooltip = null;
+
+        foreach ($data as $key => $value) {
+            if ($key == 'tooltip') {
+                $tooltip = [];
+                $tooltip['placement'] = '';
+                $tooltip['original-title'] = '';
+            }
+        }
+
+        return $tooltip;
     }
 }
