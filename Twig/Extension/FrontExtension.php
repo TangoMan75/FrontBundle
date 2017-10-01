@@ -211,13 +211,25 @@ class FrontExtension extends \Twig_Extension
      */
     public function tooltipFunction($data)
     {
+        $data = json_decode($data, true);
         $tooltip = null;
 
-        foreach ($data as $key => $value) {
-            if ($key == 'tooltip') {
-                $tooltip = [];
-                $tooltip['placement'] = '';
-                $tooltip['original-title'] = '';
+        if (isset($data['data']['tooltip'])) {
+            $tooltip = [
+                'placement' => 'top',
+                'original-title' => $data['data']['tooltip'],
+            ];
+        }
+
+        if (isset($data['data']['toggle'])) {
+            if ($data['data']['toggle'] == 'tooltip') {
+
+            if (isset($data['data']['placement'])) {
+                $tooltip['placement'] = $data['data']['placement'];
+            }
+
+            if (isset($data['data']['original-title'])) {
+                $tooltip['original-title'] = $data['data']['original-title'];
             }
         }
 
