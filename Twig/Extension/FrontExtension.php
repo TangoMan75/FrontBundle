@@ -34,7 +34,7 @@ class FrontExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction(
-                'menu', [$this, 'menuFunction'], ['is_safe' => ['html'],]
+                'menu', [$this, 'menuFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
                 'searchForm', [$this, 'searchFormFunction'], ['is_safe' => ['html']]
@@ -48,16 +48,9 @@ class FrontExtension extends \Twig_Extension
             new \Twig_SimpleFunction(
                 'modal', [$this, 'modalFunction'], ['is_safe' => ['html']]
             ),
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function getFilters()
-    {
-        return [
-            new \Twig_SimpleFilter('tooltip', [$this, 'tooltipFunction']),
+            new \Twig_SimpleFunction(
+                'get_tooltip', [$this, 'getTooltipFunction']
+            ),
         ];
     }
 
@@ -209,7 +202,7 @@ class FrontExtension extends \Twig_Extension
      *
      * @return array / null
      */
-    public function tooltipFunction($data)
+    public function getTooltipFunction($data)
     {
         $data = json_decode($data, true);
         $tooltip = null;
