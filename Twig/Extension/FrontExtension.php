@@ -49,7 +49,7 @@ class FrontExtension extends \Twig_Extension
                 'modal', [$this, 'modalFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
-                'get_tooltip', [$this, 'getTooltipFunction']
+                'parse_button', [$this, 'parseButtonFunction']
             ),
         ];
     }
@@ -196,36 +196,141 @@ class FrontExtension extends \Twig_Extension
     }
 
     /**
-     * Cache tooltip settings from button / link object
-     * 
-     * @param array $data
+     * parse settings from button object
+     *
+     * @param \stdClass $button
      *
      * @return array / null
      */
-    public function getTooltipFunction($data)
+    public function parseButtonFunction($button)
     {
-        $data = json_decode($data, true);
-        $tooltip = null;
+        $button = json_decode(json_encode($button), true);
 
-        if (isset($data['data']['tooltip'])) {
-            $tooltip = [
-                'placement' => 'top',
-                'original-title' => $data['data']['tooltip'],
+        // Set default values
+        $result = ['tag' => 'a'];
+
+        $flag = false;
+
+        // Set default tag & type
+        if (isset($button['type'])) {
+            switch ($button['type']) {
+                case 'button':
+                case 'reset':
+                case 'submit':
+                    $result['tag'] = 'button';
+                    $result['attributes'] = ['type' => $button['type']];
+                    break;
+                case 'dismiss':
+                    $result['tag'] = 'button';
+                    $result['data'] = ['dismiss' => 'modal'];
+                    $result['attributes'] = ['type' => 'button'];
+                    break;
+            }
+        }
+
+//        // BUTTON GROUP ONLY
+//        if (isset($button['buttons'])) {
+//            $result['attributes'] = [
+//                'autocomplete' => 'off',
+//            ];
+//            $result['data'] = [
+//                'toggle' => 'buttons',
+//            ];
+//        }
+
+        if (isset($button['toggle'])) {
+            $flag = true;
+            $result['attributes'] = [
+                'aria-pressed' => 'false',
+                'autocomplete' => 'off',
+            ];
+            $result['data'] = [
+                'toggle' => 'button',
             ];
         }
 
-        if (isset($data['data']['toggle'])) {
-            if ($data['data']['toggle'] == 'tooltip') {
+        if (isset($button['dropdown'])) {
+            $flag = true;
+            $result['attributes'] = [
+                'aria-haspopup' => 'true',
+                'aria-expanded' => 'false',
+            ];
+            $result['data'] = [
+                'toggle' => 'dropdown',
+                'target' => $button['collapse'],
+            ];
+        }
 
-            if (isset($data['data']['placement'])) {
-                $tooltip['placement'] = $data['data']['placement'];
-            }
+        if (isset($button['collapse'])) {
+            $flag = true;
+            $result['data'] = [
+                'toggle' => 'collapse',
+                'target' => $button['collapse'],
+            ];
+        }
 
-            if (isset($data['data']['original-title'])) {
-                $tooltip['original-title'] = $data['data']['original-title'];
+        if (isset($button['modal'])) {
+            $flag = true;
+            $result['tag'] = 'button';
+            $result['attributes'] = ['rel' => 'modal'];
+            $result['data'] = [
+                'toggle' => 'modal',
+                'target' => $button['modal'],
+            ];
+        }
+
+        if (isset($button['popover'])) {
+            $flag = true;
+            $result['tag'] = 'button';
+            $result['data'] = [
+                'toggle'    => 'popover',
+                'placement' => 'top',
+                'trigger'   => 'focus',
+                'content'   => $button['popover'],
+            ];
+        }
+
+        if (isset($button['tab'])) {
+            $flag = true;
+            $result['attributes'] = ['role' => 'tab'];
+            $result['data'] = ['toggle' => 'tab'];
+        }
+
+        if (isset($button['pill'])) {
+            $flag = true;
+            $result['attributes'] = ['role' => 'tab'];
+            $result['data'] = ['toggle' => 'pill'];
+        }
+
+        if ($flag) {
+            if (isset($button['data']['toggle'])) {
+                if ($button['data']['toggle'] == 'tooltip') {
+                    $result['wrap'] = [
+                        'toggle'         => 'tooltip',
+                        'placement'      => $button['data']['placement'],
+                        'original-title' => $button['data']['original-title'],
+                    ];
+                }
             }
         }
 
-        return $tooltip;
+        if (isset($button['tooltip'])) {
+            if ($flag) {
+                $result['wrap'] = [
+                    'toggle'         => 'tooltip',
+                    'placement'      => 'top',
+                    'original-title' => $button['tooltip'],
+                ];
+            } else {
+                $result['data'] = [
+                    'toggle'         => 'tooltip',
+                    'placement'      => 'top',
+                    'original-title' => $button['tooltip'],
+                ];
+            }
+        }
+
+        // User settings overrides default settings
+        return array_merge($button, $result);
     }
 }

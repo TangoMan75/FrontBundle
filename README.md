@@ -381,17 +381,17 @@ your json probably is invalid.
 TODO
 ====
 
-| Title | toggle | parameters |
-| ----- | ------ | ---------- |
-| Modals | data-toogle="modal" | data-target |
-| Dropdowns | data-toggle="dropdown" |  |
-| Togglable tabs | data-toggle="tab" |  |
-| Togglable pills | data-toggle="pill" |  |
-| Tooltips | data-toggle="tooltip" | data-original-title data-placement title |
-| Popovers | data-toggle="popover" data-placement data-trigger data-content title |
-| Button | data-toggle="button" |  |
-| Buttons | data-toggle="buttons" |  |
-| Collapse | data-toggle="collapse" | data-target data-parent href |
+| Title | toggle | parameters | attributes | link |
+| ----- | ------ | ---------- | ---------- | ---- |
+| Button | data-toggle="button" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons |
+| Buttons | data-toggle="buttons" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons |
+| Collapse | data-toggle="collapse" | data-target data-parent href |  | https://getbootstrap.com/docs/3.3/javascript/#collapse |
+| Dropdowns | data-toggle="dropdown" |  |  | https://getbootstrap.com/docs/3.3/javascript/#dropdowns |
+| Modals | data-toogle="modal" | data-target="..." | rel="modal" | https://getbootstrap.com/docs/3.3/javascript/#modals |
+| Popovers | data-toggle="popover" data-placement data-trigger data-content title | rel="popover" | https://getbootstrap.com/docs/3.3/javascript/#popovers |
+| Togglable pills | data-toggle="pill" |  |  | https://getbootstrap.com/docs/3.3/javascript/#pills |
+| Togglable tabs | data-toggle="tab" |  |  | https://getbootstrap.com/docs/3.3/javascript/#tabs |
+| Tooltips | data-toggle="tooltip" | data-original-title data-placement title |  | https://getbootstrap.com/docs/3.3/javascript/#tooltips |
 
 ```json
 "popover": "Blablabla"

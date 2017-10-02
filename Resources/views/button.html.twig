@@ -1,103 +1,39 @@
 {% if is_granted(button.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if start_with(app.request.attributes.get('_route'), link.pages ?? []) %}
         {% spaceless %}
-            {# INIT VALUES #}
-            {% set tag = 'a' %}
-            {% set attributes = [] %}
-            {% set data = [] %}
-            {% set toggle = false %}
-            {% set tooltip = false %}
-            {% set placement = 'top' %}
-            {% set originalTitle = '' %}
 
-            {# INIT USER VALUES AND CACHE TOOLTIP SETTINGS #}
-            {% if button.data is defined and button.data %}
-                {% for key, value in data %}
-                    {% if key == 'toggle' %}
-                        {% if value == 'tooltip' %}
-                            {% set tooltip = true %}
-                        {% else %}
-                            {% set toggle = true %}
-                        {% endif %}
-                    {% endif %}
-                    {% if key == 'placement' %}{% set placement = value %}{% endif %}
-                    {% if key == 'original-title' %}{% set originalTitle = value %}{% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {# SET DEFAULT TAG #}
-            {% if button.type is defined and button.type %}
-                {% if button.type == 'dismiss' %}
-                    {% set tag = 'button' %}
-                    {% set attributes = attributes|merge(('{"type": "button"}')|to_array) %}
-                    {% set data = data|merge(('{"dismiss": "modal"}')|to_array) %}
-                {% elseif button.type == 'reset' or button.type == 'submit' or button.type == 'button' %}
-                    {% set tag = 'button' %}
-                    {% set attributes = attributes|merge(('{"type": "'~button.type~'"}')|to_array) %}
-                {% endif %}
-            {% endif %}
-
-            {# SET DEFAULT SETTING #}
-            {# MODAL #}
-            {% if button.modal is defined and button.modal and not toggle %}
-                {% set data = data|merge(('{"toggle": "modal", "target": "'~button.modal~'"}')|to_array) %}
-                {% set attributes = attributes|merge(('{"rel": "modal"}')|to_array) %}
-                {% set toggle = true %}
-            {% endif %}
-
-            {# COLLAPSE #}
-            {% if button.collapse is defined and button.collapse and not toggle %}
-                {% set data = data|merge(('{"toggle": "collapse", "target": "'~button.collapse~'"}')|to_array) %}
-                {% set toggle = true %}
-            {% endif %}
-
-            {# POPOVER #}
-            {% if button.popover is defined and button.popover and not toggle %}
-                {% set data = data|merge(('{"toggle": "popover", "placement": "top", "trigger": "focus", "content": "'~button.popover~'"}')|to_array) %}
-                {% set attributes = attributes|merge(('{"rel": "popover", "title": "'~button.label~'"}')|to_array) %}
-                {% set toggle = true %}
-            {% endif %}
-
-            {# TOOLTIP #}
-            {% if button.tooltip is defined and button.tooltip and not toggle %}
-                {% set data = data|merge(('{"toggle": "tooltip", "placement": "top", "original-title": "'~button.tooltip~'"}')|to_array) %}
-                {% set tooltip = true %}
-            {% endif %}
-
-            {# USER SETTINGS OVERWRITE DEFAULT SETTINGS #}
-            {% if button.attributes is defined and button.attributes %}
-                {% set attributes = attributes|merge(button.attributes|to_array) %}
-            {% endif %}
-
-            {% if button.data is defined and button.data %}
-                {% set data = data|merge(button.data|to_array) %}
-            {% endif %}
-
-            {#{{ dump(tooltip) }}#}
+            {% set button = parse_button(button) %}
 
             {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
-            {% if tooltip and toggle %}
+            {% if button.wrap is defined and button.wrap %}
                 <span style="display: inline-block;"
-                data-toggle="tooltip" data-placement="{{ placement }}"
-                data-original-title="{{ originalTitle }}"
+                {% for key, value in button.wrap %}
+                    data-{{ key }}="{{ value }}"
+                {% endfor %}
                 >
             {% endif %}
 
-            <{{ tag }}
+            <{{ button.tag }}
 
             {% if button.route is defined and button.route %}
                 {# APPEND PARAMETERS TO QUERY STRING #}
                 {% if button.parameters is defined and button.parameters %}
-                    {% for key, value in button.parameters|to_array %}
-                        href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters|to_array))) }}"
+                    {% for key, value in button.parameters %}
+                        href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
                     {% endfor %}
+                {% else %}
+                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
             {% endif %}
 
             {# APPEND ATTRIBUTES #}
-            {% if attributes is defined and attributes %}
-                {% for key, value in attributes|to_array %}
-                    {{ key }}={% if is_numeric(value) %}"{{ value }}"{% else %}{{ value }}{% endif %}
+            {% if button.attributes is defined and button.attributes %}
+                {% for key, value in button.attributes %}
+                    {% if is_numeric(value) %}
+                        {{ key }}={{ value }}
+                    {% else %}
+                        {{ key }}="{{ value }}"
+                    {% endif %}
                 {% endfor %}
             {% endif %}
 
@@ -105,8 +41,8 @@
             class="{{ button.class ?? 'btn btn-primary' }}"
 
             {# APPEND DATA-ATTRIBUTES #}
-            {% if data is defined and data %}
-                {% for key, value in data|to_array %}
+            {% if button.data is defined and button.data %}
+                {% for key, value in button.data %}
                     data-{{ key }}="{{ value }}"
                 {% endfor %}
             {% endif %}
@@ -126,18 +62,19 @@
 
             {# LABEL #}
             {% if button.label is defined and button.label %}
-                &nbsp;
+                {% if button.icon is defined and button.icon %}&nbsp;{% endif %}
                 <span{% if button.icon is defined and button.icon %} class="hidden-xs"{% endif %}>{{ button.label|trans }}</span>
             {% endif %}
 
             {# BADGE #}
             {% if button.badge is defined and button.badge %}
-                &nbsp;<span class="badge">{{ button.badge }}</span>
+                {% if button.label is defined and button.label or button.icon is defined and button.icon %}&nbsp;{% endif %}
+                <span class="badge">{{ button.badge }}</span>
             {% endif %}
 
-            </{{ tag }}>
+            </{{ button.tag }}>
 
-            {% if tooltip and toggle %}
+            {% if button.wrap is defined and button.wrap %}
                 </span>
             {% endif %}
 
