@@ -228,17 +228,7 @@ class FrontExtension extends \Twig_Extension
             }
         }
 
-//        // BUTTON GROUP ONLY
-//        if (isset($button['buttons'])) {
-//            $result['attributes'] = [
-//                'autocomplete' => 'off',
-//            ];
-//            $result['data'] = [
-//                'toggle' => 'buttons',
-//            ];
-//        }
-
-        if (isset($button['toggle'])) {
+        if (isset($button['toggle']) && !$flag) {
             $flag = true;
             $result['attributes'] = [
                 'aria-pressed' => 'false',
@@ -249,7 +239,7 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['dropdown'])) {
+        if (isset($button['dropdown']) && !$flag) {
             $flag = true;
             $result['attributes'] = [
                 'aria-haspopup' => 'true',
@@ -261,7 +251,7 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['collapse'])) {
+        if (isset($button['collapse']) && !$flag) {
             $flag = true;
             $result['data'] = [
                 'toggle' => 'collapse',
@@ -269,7 +259,7 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['modal'])) {
+        if (isset($button['modal']) && !$flag) {
             $flag = true;
             $result['tag'] = 'button';
             $result['attributes'] = ['rel' => 'modal'];
@@ -279,7 +269,7 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['popover'])) {
+        if (isset($button['popover']) && !$flag) {
             $flag = true;
             $result['tag'] = 'button';
             $result['data'] = [
@@ -290,13 +280,13 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['tab'])) {
+        if (isset($button['tab']) && !$flag) {
             $flag = true;
             $result['attributes'] = ['role' => 'tab'];
             $result['data'] = ['toggle' => 'tab'];
         }
 
-        if (isset($button['pill'])) {
+        if (isset($button['pill']) && !$flag) {
             $flag = true;
             $result['attributes'] = ['role' => 'tab'];
             $result['data'] = ['toggle' => 'pill'];
