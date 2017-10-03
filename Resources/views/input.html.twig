@@ -1,5 +1,5 @@
 {% if is_granted(input.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), input.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), input.pages ?? []) %}
         {% if input.label is defined and input.label %}
             <label class="control-label" for="input-{{ input.name }}">
                 {{ input.label|trans }}

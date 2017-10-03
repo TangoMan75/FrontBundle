@@ -29,9 +29,10 @@ Elements can
  - be disabled
  - be displayed on specific pages
  - be firewalled
- - trigger modals
- - trigger submenus
- - trigger accordion
+ - toggle popovers
+ - toggle modals
+ - toggle dropdowns
+ - toggle accordion
  - submit form onchange
 
 Every label or name attibute is automatically translated.

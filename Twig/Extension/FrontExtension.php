@@ -34,6 +34,12 @@ class FrontExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction(
+                'route_granted', [$this, 'routeGrantedFunction']
+            ),
+            new \Twig_SimpleFunction(
+                'route_end_with', [$this, 'routeEndWithFunction']
+            ),
+            new \Twig_SimpleFunction(
                 'menu', [$this, 'menuFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
@@ -52,6 +58,63 @@ class FrontExtension extends \Twig_Extension
                 'parse_button', [$this, 'parseButtonFunction']
             ),
         ];
+    }
+
+    /**
+     * Checks if at least one item from allowedRoutes starts with route
+     * Returns true when allowedRoutes is empty
+     *
+     * @param string $route
+     * @param array  $allowedRoutes
+     *
+     * @return bool
+     */
+    public function routeGrantedFunction($route, $allowedRoutes = [])
+    {
+        if ($allowedRoutes == []) {
+            return true;
+        }
+
+        if (in_array($route, $allowedRoutes)) {
+            return true;
+        } else {
+            foreach ($allowedRoutes as $item) {
+                if (strpos($route, $item) === 0) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks if at least one item from allowedRoutes ends with route
+     * Returns true when allowedRoutes is empty
+     *
+     * @param string $route
+     * @param array  $allowedRoutes
+     *
+     * @return bool
+     */
+    public function routeEndWithFunction($route, $allowedRoutes = [])
+    {
+        if ($allowedRoutes == []) {
+            return true;
+        }
+
+        if (in_array($route, $allowedRoutes)) {
+            return true;
+        } else {
+            foreach ($allowedRoutes as $item) {
+                $length = strlen($route);
+                if (substr($allowedRoutes, -$length) === $route) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**

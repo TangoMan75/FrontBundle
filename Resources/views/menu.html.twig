@@ -1,10 +1,10 @@
 {% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), menu.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), menu.pages ?? []) %}
         <nav class="navbar navbar-default">
             <ul class="nav nav-pills nav-stacked">
                 {% for item in menu.items %}
                     {% if is_granted(item.subMenu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                        {% if start_with(app.request.attributes.get('_route'), item.pages ?? []) %}
+                        {% if route_granted(app.request.attributes.get('_route'), item.pages ?? []) %}
                             {% if item.divider is defined and item.divider %}
                                 <li class="nav-divider" role="separator"></li>
                             {% else %}

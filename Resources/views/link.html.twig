@@ -1,58 +1,75 @@
 {% if is_granted(link.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), link.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), link.pages ?? []) %}
+        {% spaceless %}
+            {% set link = parse_button(link) %}
 
-        {% set toggleFlag = false %}
-        {% if link.data is defined and link.data %}
-            {% for key, value in link.data %}
-                {% if key == 'toggle' %}{% set toggleFlag = true %}{% endif %}
-            {% endfor %}
-        {% endif %}
+            {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
+            {% if link.wrap is defined and link.wrap %}
+                <span style="display: inline-block;"
+                {% for key, value in link.wrap %}
+                    data-{{ key }}="{{ value }}"
+                {% endfor %}
+                >
+            {% endif %}
 
-        {% set tempData = [] %}
-        {% if link.tooltip is defined and link.tooltip %}
-            {% set tempData = ('{"toggle": "tooltip", "placement": "top", "original-title": "'~link.tooltip~'"}')|to_array %}
-        {% endif %}
-
-        {% if link.popover is defined and link.popover %}
-            {% set tempData = ('{"toggle": "popover", "placement": "top", "trigger": "focus", "title": "'~link.label~'", "content": "'~link.popover~'"}')|to_array %}
-        {% endif %}
-
-        {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
-        {% if link.data is defined and link.data and link.tooltip is defined and link.tooltip %}
-            <span style="display: inline-block;"
-            data-toggle="tooltip" data-placement="top"
-            data-original-title="{{ link.tooltip }}"
-            >
-        {% endif %}
-        <a
+            <a
             {% if link.route is defined and link.route %}
+                {# APPEND PARAMETERS TO QUERY STRING #}
                 {% if link.parameters is defined and link.parameters %}
-                    {% for key, value in link.parameters|to_array %}
-                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters|to_array))) }}"
-                    {% endfor %}
+                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters))) }}"
                 {% else %}
-                    href="{{ path(link.route) }}"
+                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
             {% endif %}
 
+            {# APPEND ATTRIBUTES #}
+            {% if link.attributes is defined and link.attributes %}
+                {% for key, value in link.attributes %}
+                    {{ key }}="{{ value }}"
+                {% endfor %}
+            {% endif %}
+
+            {# STYLES #}
             {% if link.class is defined and link.class %}
                 class="{{ link.class }}"
             {% endif %}
 
-            {% if data is defined and data not null %}
-                {% for key, value in data|to_array %}
-                    data-{{ data.key }}="{{ data.value }}"
+            {# APPEND DATA-ATTRIBUTES #}
+            {% if link.data is defined and link.data %}
+                {% for key, value in link.data %}
+                    data-{{ key }}="{{ value }}"
                 {% endfor %}
             {% endif %}
-    >
+
+            {# DISABLED #}
+            {% if link.disabled is defined and link.disabled %}
+                disabled="disabled"
+            {% endif %}
+            >
+
+            {# ICON #}
             {% if link.icon is defined and link.icon %}
-                <span class="{{ link.icon }}"></span>
+                <span class="{{ link.icon }}" aria-hidden="true"></span>
             {% endif %}
 
-        {% if link.label is defined and link.label %}
-            {{ link.label|trans }}
-        {% endif %}
-        </a>
-    {% endif %}
+            {# LABEL #}
+            {% if link.label is defined and link.label %}
+                {% if link.icon is defined and link.icon %}&nbsp;{% endif %}
+                <span{% if link.icon is defined and link.icon %} class="hidden-xs"{% endif %}>{{ link.label|trans }}</span>
+            {% endif %}
 
+            {# BADGE #}
+            {% if link.badge is defined and link.badge %}
+                {% if link.label is defined and link.label or link.icon is defined and link.icon %}&nbsp;{% endif %}
+                <span class="badge">{{ link.badge }}</span>
+            {% endif %}
+
+            </a>
+
+            {% if link.wrap is defined and link.wrap %}
+                </span>
+            {% endif %}
+
+        {% endspaceless %}
+    {% endif %}
 {% endif %}

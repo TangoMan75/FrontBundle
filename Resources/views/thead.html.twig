@@ -44,7 +44,7 @@
     {% spaceless %}
         {% for th in thead.ths %}
             {% if is_granted(th.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                {% if start_with(app.request.attributes.get('_route'), th.pages ?? []) %}
+                {% if route_granted(app.request.attributes.get('_route'), th.pages ?? []) %}
                     {# Setting default way #}
                     {% if not th.way is defined %}
                         {% set thWay = 'ASC' %}

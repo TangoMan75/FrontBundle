@@ -1,7 +1,6 @@
 {% if is_granted(button.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), link.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), button.pages ?? []) %}
         {% spaceless %}
-
             {% set button = parse_button(button) %}
 
             {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
@@ -14,13 +13,10 @@
             {% endif %}
 
             <{{ button.tag }}
-
             {% if button.route is defined and button.route %}
                 {# APPEND PARAMETERS TO QUERY STRING #}
                 {% if button.parameters is defined and button.parameters %}
-                    {% for key, value in button.parameters %}
-                        href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
-                    {% endfor %}
+                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
                 {% else %}
                     href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
@@ -29,11 +25,7 @@
             {# APPEND ATTRIBUTES #}
             {% if button.attributes is defined and button.attributes %}
                 {% for key, value in button.attributes %}
-                    {% if is_numeric(value) %}
-                        {{ key }}={{ value }}
-                    {% else %}
-                        {{ key }}="{{ value }}"
-                    {% endif %}
+                    {{ key }}="{{ value }}"
                 {% endfor %}
             {% endif %}
 

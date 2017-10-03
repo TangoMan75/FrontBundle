@@ -1,10 +1,10 @@
 {% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), menu.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), menu.pages ?? []) %}
         <div id="tabs">
             <ul class="nav nav-tabs">
                 {% for item in menu.items %}
                     {% if is_granted(item.item.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                        {% if start_with(app.request.attributes.get('_route'), item.pages ?? []) %}
+                        {% if route_granted(app.request.attributes.get('_route'), item.pages ?? []) %}
                             {% if item.active is defined %}
                             <li{% if app.request.attributes.get('_route') ends with item.active %} class="active"{% endif %}>
                             {% else %}

@@ -1,5 +1,5 @@
 {% if is_granted(form.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-    {% if start_with(app.request.attributes.get('_route'), form.pages ?? []) %}
+    {% if route_granted(app.request.attributes.get('_route'), form.pages ?? []) %}
         {% spaceless %}
             <form method="GET"
                   class="clearfix{% if form.class is defined and form.class %} {{ form.class }}{% endif %}">

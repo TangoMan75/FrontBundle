@@ -27,12 +27,12 @@
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                         {% spaceless %}
-                            {% if start_with(app.request.attributes.get('_route'), menu.pages ?? []) %}
+                            {% if route_granted(app.request.attributes.get('_route'), menu.pages ?? []) %}
                                 <ul class="nav navbar-nav navbar-left">
                                     {% for item in menu.items %}
                                         {% if item.subMenu is defined %}
                                             {% if is_granted(item.subMenu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                                                {% if start_with(app.request.attributes.get('_route'), item.subMenu.page ?? []) %}
+                                                {% if route_granted(app.request.attributes.get('_route'), item.subMenu.page ?? []) %}
                                                     <li class="dropdown">
                                                         <a class="dropdown-toggle" data-toggle="dropdown"
                                                            role="button"
@@ -49,7 +49,7 @@
                                                         <ul class="dropdown-menu">
                                                             {% for subItem in item.subMenu.items %}
                                                                 {% if is_granted(subItem.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                                                                    {% if start_with(app.request.attributes.get('_route'), subItem.pages ?? []) %}
+                                                                    {% if route_granted(app.request.attributes.get('_route'), subItem.pages ?? []) %}
 
                                                                         {% if subItem.divider is defined and subItem.divider %}
                                                                             <li class="divider" role="separator"></li>
@@ -112,7 +112,7 @@
                                         {% else %}
                                             {# USER IS NOT LOGGED IN #}
                                             {% if is_granted(item.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                                                {% if start_with(app.request.attributes.get('_route'), item.pages ?? []) %}
+                                                {% if route_granted(app.request.attributes.get('_route'), item.pages ?? []) %}
                                                     {% if item.active is defined %}
                                                     <li{% if app.request.attributes.get('_route') starts with item.active %} class="active"{% endif %}>
                                                     {% else %}
