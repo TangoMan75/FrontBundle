@@ -23,7 +23,7 @@
 		"Bundle",
 		"TangoMan"
 	],
-	"licence": "GPL-3.0",
+	"licence": "MIT",
 	"authors": [
 		{
 			"name": "Matthias Morin",
