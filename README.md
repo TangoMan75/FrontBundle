@@ -425,8 +425,8 @@ License
 
 Copyrights (c) 2017 Matthias Morin
 
-[![License][license-GPL]][license-url]
-Distributed under the GPLv3.0 license.
+[![License][license-MIT]][license-url]
+Distributed under the MIT license.
 
 If you like **TangoMan Front Bundle** please star!
 And follow me on GitHub: [TangoMan75](https://github.com/TangoMan75)
