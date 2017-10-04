@@ -384,7 +384,7 @@ TODO
 
 | Title | toggle | parameters | attributes | link |
 | ----- | ------ | ---------- | ---------- | ---- |
-| Button | data-toggle="button" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons |
+| Button | data-toggle="button" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle |
 | Buttons | data-toggle="buttons" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons |
 | Collapse | data-toggle="collapse" | data-target data-parent href |  | https://getbootstrap.com/docs/3.3/javascript/#collapse |
 | Dropdowns | data-toggle="dropdown" |  |  | https://getbootstrap.com/docs/3.3/javascript/#dropdowns |

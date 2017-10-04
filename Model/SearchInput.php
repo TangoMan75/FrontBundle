@@ -269,41 +269,40 @@ class SearchInput implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [];
+//        $json = [];
+//        $options = [];
+//        foreach ($this->options as $option) {
+//            $options[] = $option->jsonSerialize();
+//        }
+//
+//        if ($this->type) {
+//            $json['type'] = $this->type;
+//        }
+//
+//        if ($this->name) {
+//            $json['name'] = $this->name;
+//        }
+//
+//        if ($this->placeholder) {
+//            $json['placeholder'] = $this->placeholder;
+//        }
+//
+//        if ($this->label) {
+//            $json['label'] = $this->label;
+//        }
+//
+//        if ($this->class) {
+//            $json['class'] = $this->class;
+//        }
+//
+//        if ($this->icon) {
+//            $json['icon'] = $this->icon;
+//        }
+//
+//        if ($this->type == 'select') {
+//            $json['options'] = $options;
+//        }
 
-        $options = [];
-        foreach ($this->options as $option) {
-            $options[] = $option->jsonSerialize();
-        }
-
-        if ($this->type) {
-            $json['type'] = $this->type;
-        }
-
-        if ($this->name) {
-            $json['name'] = $this->name;
-        }
-
-        if ($this->placeholder) {
-            $json['placeholder'] = $this->placeholder;
-        }
-
-        if ($this->label) {
-            $json['label'] = $this->label;
-        }
-
-        if ($this->class) {
-            $json['class'] = $this->class;
-        }
-
-        if ($this->icon) {
-            $json['icon'] = $this->icon;
-        }
-
-        if ($this->type == 'select') {
-            $json['options'] = $options;
-        }
-
-        return $json;
+        return get_object_vars($this);
     }
 }

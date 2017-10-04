@@ -310,7 +310,6 @@ class FrontExtension extends \Twig_Extension
             ];
             $result['data'] = [
                 'toggle' => 'dropdown',
-                'target' => $button['collapse'],
             ];
         }
 

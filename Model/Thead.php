@@ -116,17 +116,17 @@ class Thead implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [];
-        if ($this->class) {
-            $json['class'] = $this->class;
-        }
+//        $json = [];
+//        if ($this->class) {
+//            $json['class'] = $this->class;
+//        }
+//
+//        $ths = [];
+//        foreach ($this->ths as $th) {
+//            $ths[] = $th->jsonSerialize();
+//        }
+//        $json['ths'] = $ths;
 
-        $ths = [];
-        foreach ($this->ths as $th) {
-            $ths[] = $th->jsonSerialize();
-        }
-        $json['ths'] = $ths;
-
-        return $json;
+        return get_object_vars($this);
     }
 }

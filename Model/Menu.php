@@ -345,40 +345,40 @@ class Menu implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [];
-        if ($this->label) {
-            $json['label'] = $this->label;
-        }
+//        $json = [];
+//        if ($this->label) {
+//            $json['label'] = $this->label;
+//        }
+//
+//        if ($this->route) {
+//            $json['route'] = $this->route;
+//        }
+//
+//        if (count($this->pages)) {
+//            $json['pages'] = json_encode($this->pages);
+//        }
+//
+//        if ($this->logo) {
+//            $json['logo'] = $this->logo;
+//        }
+//
+//        if ($this->icon) {
+//            $json['icon'] = $this->icon;
+//        }
+//
+//        if (count($this->roles)) {
+//            $json['roles'] = json_encode($this->roles);
+//        }
+//
+//        $items = [];
+//        foreach ($this->items as $item) {
+//            $items[] = $item->jsonSerialize();
+//        }
+//
+//        if ($this->items) {
+//            $json['items'] = $items;
+//        }
 
-        if ($this->route) {
-            $json['route'] = $this->route;
-        }
-
-        if (count($this->pages)) {
-            $json['pages'] = json_encode($this->pages);
-        }
-
-        if ($this->logo) {
-            $json['logo'] = $this->logo;
-        }
-
-        if ($this->icon) {
-            $json['icon'] = $this->icon;
-        }
-
-        if (count($this->roles)) {
-            $json['roles'] = json_encode($this->roles);
-        }
-
-        $items = [];
-        foreach ($this->items as $item) {
-            $items[] = $item->jsonSerialize();
-        }
-
-        if ($this->items) {
-            $json['items'] = $items;
-        }
-
-        return $json;
+        return get_object_vars($this);
     }
 }

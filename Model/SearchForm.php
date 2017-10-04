@@ -111,17 +111,17 @@ class SearchForm implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [];
-        if ($this->class) {
-            $json['class'] = $this->class;
-        }
+//        $json = [];
+//        if ($this->class) {
+//            $json['class'] = $this->class;
+//        }
+//
+//        $inputs = [];
+//        foreach ($this->inputs as $input) {
+//            $inputs[] = $input->jsonSerialize();
+//        }
+//        $json['inputs'] = $inputs;
 
-        $inputs = [];
-        foreach ($this->inputs as $input) {
-            $inputs[] = $input->jsonSerialize();
-        }
-        $json['inputs'] = $inputs;
-
-        return $json;
+        return get_object_vars($this);
     }
 }

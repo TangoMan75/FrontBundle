@@ -190,21 +190,22 @@ class ButtonGroup implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [];
-        if ($this->class) {
-            $json['class'] = $this->class;
-        }
+//        $json = [];
+//        if ($this->class) {
+//            $json['class'] = $this->class;
+//        }
+//
+//        $buttons = [];
+//        foreach ($this->buttons as $button) {
+//            $buttons[] = $button->jsonSerialize();
+//        }
+//        $json['buttons'] = $buttons;
+//
+//        if (count($this->roles)) {
+//            $json['roles'] = json_encode($this->roles);
+//        }
 
-        $buttons = [];
-        foreach ($this->buttons as $button) {
-            $buttons[] = $button->jsonSerialize();
-        }
-        $json['buttons'] = $buttons;
+        return get_object_vars($this);
 
-        if (count($this->roles)) {
-            $json['roles'] = json_encode($this->roles);
-        }
-
-        return $json;
     }
 }

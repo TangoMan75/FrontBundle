@@ -230,27 +230,27 @@ class Th implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = [
-            'name'  => $this->name,
-            'label' => $this->label,
-        ];
+//        $json = [
+//            'name'  => $this->name,
+//            'label' => $this->label,
+//        ];
+//
+//        if ($this->route) {
+//            $json['route'] = $this->route;
+//        }
+//
+//        if (count($this->roles)) {
+//            $json['roles'] = json_encode($this->roles);
+//        }
+//
+//        if ($this->way) {
+//            $json['way'] = $this->way;
+//        }
+//
+//        if ($this->colspan) {
+//            $json['colspan'] = $this->colspan;
+//        }
 
-        if ($this->route) {
-            $json['route'] = $this->route;
-        }
-
-        if (count($this->roles)) {
-            $json['roles'] = json_encode($this->roles);
-        }
-
-        if ($this->way) {
-            $json['way'] = $this->way;
-        }
-
-        if ($this->colspan) {
-            $json['colspan'] = $this->colspan;
-        }
-
-        return $json;
+        return get_object_vars($this);
     }
 }

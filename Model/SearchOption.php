@@ -64,9 +64,6 @@ class SearchOption implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
-            'name'  => $this->name,
-            'value' => $this->value,
-        ];
+        return get_object_vars($this);
     }
 }
