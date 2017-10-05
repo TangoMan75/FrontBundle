@@ -31,10 +31,10 @@
 		}
 	],
 	"require": {
-		"php"                         : ">=5.4.0",
-		"symfony/framework-bundle"    : "~2.3|~3.0",
-		"twig/twig"                   : "~1.12|~2",
-		"tangoman/callback-bundle"    : "^1.0"
+		"php": ">=5.4.0",
+		"symfony/framework-bundle": "~2.3|~3.0",
+		"twig/twig": "~1.12|~2",
+		"tangoman/callback-bundle": "^1.0"
 	},
 	"autoload": {
 		"psr-4": {

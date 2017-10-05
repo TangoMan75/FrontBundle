@@ -25,6 +25,14 @@ trait HasRoute
     protected $parameters = [];
 
     /**
+     * Target URL or internal anchor
+     * e.g.: '#article-1'
+     *
+     * @var string
+     */
+    protected $href = '#';
+
+    /**
      * @return string
      */
     public function getRoute()
@@ -189,6 +197,26 @@ trait HasRoute
         if ($this->hasParameter($parameter)) {
             unset($this->parameters[$parameter]);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * @param string $href
+     *
+     * @return HasRoute
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
 
         return $this;
     }

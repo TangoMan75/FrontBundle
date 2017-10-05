@@ -71,8 +71,8 @@
                                                                                             {% else %}
                                                                                                 href="{{ path(subItem.route) }}"
                                                                                             {% endif %}
-                                                                                        {% elseif subItem.anchor is defined and subItem.anchor %}
-                                                                                            href="{{ subItem.anchor }}"
+                                                                                        {% elseif subItem.href is defined and subItem.href %}
+                                                                                            href="{{ subItem.href }}"
                                                                                         {% endif %}
                                                                                         {% if subItem.toggle is defined and subItem.toggle %}
                                                                                             data-toggle="{{ subItem.toggle }}"
@@ -129,8 +129,8 @@
                                                                 {% else %}
                                                                     href="{{ path(item.route) }}"
                                                                 {% endif %}
-                                                            {% elseif item.anchor is defined and item.anchor %}
-                                                                href="{{ item.anchor }}"
+                                                            {% elseif item.href is defined and item.href %}
+                                                                href="{{ item.href }}"
                                                             {% endif %}
                                                             {% if item.toggle is defined and item.toggle %}
                                                                 data-toggle="{{ item.toggle }}"

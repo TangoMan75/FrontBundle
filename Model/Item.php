@@ -11,6 +11,10 @@ use TangoMan\FrontBundle\Model\Menu;
  */
 class Item implements \JsonSerializable
 {
+    use Traits\IsElement;
+    use Traits\IsStyled;
+    use Traits\HasRoute;
+    use Traits\IsProtected;
     use Traits\JsonSerializable;
 
     /**
@@ -61,12 +65,12 @@ class Item implements \JsonSerializable
     private $target;
 
     /**
-     * Current page internal anchor
+     * Current page internal href
      * e.g.: '#article-tangoman'
      *
      * @var string
      */
-    private $anchor;
+    private $href;
 
     /**
      * Pass callback link with route parameters
@@ -246,17 +250,17 @@ class Item implements \JsonSerializable
      */
     public function getAnchor()
     {
-        return $this->anchor;
+        return $this->href;
     }
 
     /**
-     * @param string $anchor
+     * @param string $href
      *
      * @return $this
      */
-    public function setAnchor($anchor)
+    public function setAnchor($href)
     {
-        $this->anchor = $anchor;
+        $this->href = $href;
 
         return $this;
     }

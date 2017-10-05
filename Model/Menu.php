@@ -12,6 +12,7 @@ use TangoMan\FrontBundle\Model\Item;
 class Menu implements \JsonSerializable
 {
     use Traits\JsonSerializable;
+    use Traits\IsStyled;
 
     /**
      * Base64 logo
@@ -20,21 +21,6 @@ class Menu implements \JsonSerializable
      * @var string
      */
     private $logo;
-
-    /**
-     * Font icon
-     * e.g.: 'glyphicon glyphicon-user'
-     *
-     * @var string
-     */
-    private $icon;
-
-    /**
-     * Label to be displayed
-     *
-     * @var string
-     */
-    private $label;
 
     /**
      * Hyperlink route

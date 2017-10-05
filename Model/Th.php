@@ -10,6 +10,9 @@ namespace TangoMan\FrontBundle\Model;
 class Th implements \JsonSerializable
 {
     use Traits\JsonSerializable;
+    use Traits\HasLabel;
+    use Traits\IsProtected;
+    use Traits\HasRoute;
 
     /**
      * Entity name to be used with orderBy
@@ -17,30 +20,6 @@ class Th implements \JsonSerializable
      * @var string
      */
     private $name;
-
-    /**
-     * Label to be displayed
-     *
-     * @var string
-     */
-    private $label;
-
-    /**
-     * Hyperlink route
-     * e.g: 'app_admin_user_index'
-     *
-     * @var string
-     */
-    private $route;
-
-    /**
-     * Roles granted privilege to see item
-     * (null = no restrictions)
-     * e.g: ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']
-     *
-     * @var array
-     */
-    private $roles = [];
 
     /**
      * OrderBy default way
@@ -80,91 +59,6 @@ class Th implements \JsonSerializable
     /**
      * @return string
      */
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    /**
-     * @param string $label
-     *
-     * @return $this
-     */
-    public function setLabel($label)
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    /**
-     * @param array $roles
-     *
-     * @return $this
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @return array $roles
-     */
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    /**
-     * @param string $role
-     *
-     * @return bool
-     */
-    public function hasRole($role)
-    {
-        if (in_array($role, $this->roles)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param string $role
-     *
-     * @return $this
-     */
-    public function addRole($role)
-    {
-        if (!$this->hasRole($role)) {
-            $this->roles[] = $role;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param string $role
-     *
-     * @return $this
-     */
-    public function removeRole($role)
-    {
-        $roles = $this->roles;
-
-        if ($this->hasRole($role)) {
-            $remove[] = $role;
-            $this->roles = array_diff($roles, $remove);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getWay()
     {
         return $this->way;
@@ -183,26 +77,6 @@ class Th implements \JsonSerializable
         } else {
             $this->way = 'ASC';
         }
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoute()
-    {
-        return $this->route;
-    }
-
-    /**
-     * @param string $route
-     *
-     * @return $this
-     */
-    public function setRoute($route)
-    {
-        $this->route = $route;
 
         return $this;
     }

@@ -21,8 +21,8 @@
                                         {% else %}
                                             href="{{ path(item.route) }}"
                                         {% endif %}
-                                    {% elseif item.anchor is defined and item.anchor %}
-                                        href="{{ item.anchor }}"
+                                    {% elseif item.href is defined and item.href %}
+                                        href="{{ item.href }}"
                                     {% endif %}
                                     {% if item.tooltip is defined and item.tooltip %}
                                         data-toggle="tooltip" data-placement="top"
