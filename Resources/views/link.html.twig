@@ -13,56 +13,61 @@
             {% endif %}
 
             <a
-            {% if link.route is defined and link.route %}
-                {# APPEND PARAMETERS TO QUERY STRING #}
-                {% if link.parameters is defined and link.parameters %}
-                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters))) }}"
-                {% else %}
-                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
+                {% if link.route is defined and link.route %}
+                    {# APPEND PARAMETERS TO QUERY STRING #}
+                    {% if link.parameters is defined and link.parameters %}
+                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters))) }}"
+                    {% else %}
+                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
-            {# APPEND ATTRIBUTES #}
-            {% if link.attributes is defined and link.attributes %}
-                {% for key, value in link.attributes %}
-                    {{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# APPEND TARGET #}
+                {% if link.href is defined and link.href %}
+                    href="{{ link.href }}"
+                {% endif %}
 
-            {# STYLES #}
-            {% if link.class is defined and link.class %}
-                class="{{ link.class }}"
-            {% endif %}
+                {# APPEND ATTRIBUTES #}
+                {% if link.attributes is defined and link.attributes %}
+                    {% for key, value in link.attributes %}
+                        {{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
 
-            {# APPEND DATA-ATTRIBUTES #}
-            {% if link.data is defined and link.data %}
-                {% for key, value in link.data %}
-                    data-{{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# STYLES #}
+                {% if link.class is defined and link.class %}
+                    class="{{ link.class }}"
+                {% endif %}
 
-            {# DISABLED #}
-            {% if link.disabled is defined and link.disabled %}
-                disabled="disabled"
-            {% endif %}
+                {# APPEND DATA-ATTRIBUTES #}
+                {% if link.data is defined and link.data %}
+                    {% for key, value in link.data %}
+                        data-{{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
+
+                {# DISABLED #}
+                {% if link.disabled is defined and link.disabled %}
+                    disabled="disabled"
+                {% endif %}
             >
 
-            {# ICON #}
-            {% if link.icon is defined and link.icon %}
-                <span class="{{ link.icon }}" aria-hidden="true"></span>
-            {% endif %}
+                {# ICON #}
+                {% if link.icon is defined and link.icon %}
+                    <span class="{{ link.icon }}" aria-hidden="true"></span>
+                {% endif %}
 
-            {# LABEL #}
-            {% if link.label is defined and link.label %}
-                {% if link.icon is defined and link.icon %}&nbsp;{% endif %}
-                <span{% if link.icon is defined and link.icon %} class="hidden-xs"{% endif %}>{{ link.label|trans }}</span>
-            {% endif %}
+                {# LABEL #}
+                {% if link.label is defined and link.label %}
+                    {% if link.icon is defined and link.icon %}&nbsp;{% endif %}
+                    <span{% if link.icon is defined and link.icon %} class="hidden-xs"{% endif %}>{{ link.label|trans }}</span>
+                {% endif %}
 
-            {# BADGE #}
-            {% if link.badge is defined and link.badge %}
-                {% if link.label is defined and link.label or link.icon is defined and link.icon %}&nbsp;{% endif %}
-                <span class="badge">{{ link.badge }}</span>
-            {% endif %}
+                {# BADGE #}
+                {% if link.badge is defined and link.badge %}
+                    {% if link.label is defined and link.label or link.icon is defined and link.icon %}&nbsp;{% endif %}
+                    <span class="badge">{{ link.badge }}</span>
+                {% endif %}
 
             </a>
 

@@ -11,6 +11,8 @@ use TangoMan\FrontBundle\Model\Th;
  */
 class Thead implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Classes to be applied
      * e.g.: 'my-class bootstrap-class'
@@ -109,24 +111,5 @@ class Thead implements \JsonSerializable
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->class) {
-//            $json['class'] = $this->class;
-//        }
-//
-//        $ths = [];
-//        foreach ($this->ths as $th) {
-//            $ths[] = $th->jsonSerialize();
-//        }
-//        $json['ths'] = $ths;
-
-        return get_object_vars($this);
     }
 }

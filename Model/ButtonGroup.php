@@ -11,6 +11,8 @@ use TangoMan\FrontBundle\Model\Button;
  */
 class ButtonGroup implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Button class
      * e.g: btn btn-primary
@@ -183,29 +185,5 @@ class ButtonGroup implements \JsonSerializable
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->class) {
-//            $json['class'] = $this->class;
-//        }
-//
-//        $buttons = [];
-//        foreach ($this->buttons as $button) {
-//            $buttons[] = $button->jsonSerialize();
-//        }
-//        $json['buttons'] = $buttons;
-//
-//        if (count($this->roles)) {
-//            $json['roles'] = json_encode($this->roles);
-//        }
-
-        return get_object_vars($this);
-
     }
 }

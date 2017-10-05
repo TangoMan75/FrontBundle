@@ -11,6 +11,8 @@ use TangoMan\FrontBundle\Model\Item;
  */
 class Menu implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Base64 logo
      * e.g.: 'data:image/jpeg;base64,/9j/4QAWRX'
@@ -338,47 +340,5 @@ class Menu implements \JsonSerializable
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->label) {
-//            $json['label'] = $this->label;
-//        }
-//
-//        if ($this->route) {
-//            $json['route'] = $this->route;
-//        }
-//
-//        if (count($this->pages)) {
-//            $json['pages'] = json_encode($this->pages);
-//        }
-//
-//        if ($this->logo) {
-//            $json['logo'] = $this->logo;
-//        }
-//
-//        if ($this->icon) {
-//            $json['icon'] = $this->icon;
-//        }
-//
-//        if (count($this->roles)) {
-//            $json['roles'] = json_encode($this->roles);
-//        }
-//
-//        $items = [];
-//        foreach ($this->items as $item) {
-//            $items[] = $item->jsonSerialize();
-//        }
-//
-//        if ($this->items) {
-//            $json['items'] = $items;
-//        }
-
-        return get_object_vars($this);
     }
 }

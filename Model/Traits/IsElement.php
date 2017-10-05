@@ -49,7 +49,7 @@ trait IsElement
      *
      * @var string
      */
-    protected $name;
+    protected $tag;
 
     /**
      * Type attribute
@@ -111,19 +111,19 @@ trait IsElement
     /**
      * @return string
      */
-    public function getName()
+    public function getTag()
     {
-        return $this->name;
+        return $this->tag;
     }
 
     /**
-     * @param string $name
+     * @param string $tag
      *
-     * @return $this
+     * @return IsElement
      */
-    public function setName($name)
+    public function setTag($tag)
     {
-        $this->name = $name;
+        $this->tag = $tag;
 
         return $this;
     }

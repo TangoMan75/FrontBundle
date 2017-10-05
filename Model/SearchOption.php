@@ -9,6 +9,8 @@ namespace TangoMan\FrontBundle\Model;
  */
 class SearchOption implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * @var String
      */
@@ -57,13 +59,5 @@ class SearchOption implements \JsonSerializable
         $this->value = $value;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return get_object_vars($this);
     }
 }

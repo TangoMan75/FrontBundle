@@ -11,6 +11,8 @@ use TangoMan\FrontBundle\Model\Menu;
  */
 class Item implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Font icon
      * e.g.: 'glyphicon glyphicon-user'
@@ -487,66 +489,5 @@ class Item implements \JsonSerializable
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->icon) {
-//            $json['icon'] = $this->icon;
-//        }
-//
-//        if ($this->label) {
-//            $json['label'] = $this->label;
-//        }
-//
-//        if ($this->route) {
-//            $json['route'] = $this->route;
-//        }
-//
-//        if ($this->callback) {
-//            $json['callback'] = $this->callback;
-//        }
-//
-//        if ($this->id) {
-//            $json['id'] = $this->id;
-//        }
-//
-//        if ($this->slug) {
-//            $json['slug'] = $this->slug;
-//        }
-//
-//        if ($this->toggle) {
-//            $json['toggle'] = $this->toggle;
-//        }
-//
-//        if ($this->target) {
-//            $json['target'] = $this->target;
-//        }
-//
-//        if ($this->active) {
-//            $json['active'] = $this->active;
-//        }
-//
-//        if ($this->divider) {
-//            $json['divider'] = $this->divider;
-//        }
-//
-//        if ($this->subMenu) {
-//            $json['subMenu'] = $this->subMenu->jsonSerialize();
-//        }
-//
-//        if (count($this->pages)) {
-//            $json['pages'] = json_encode($this->pages);
-//        }
-//
-//        if (count($this->roles)) {
-//            $json['roles'] = json_encode($this->roles);
-//        }
-
-        return get_object_vars($this);
     }
 }

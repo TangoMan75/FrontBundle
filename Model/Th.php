@@ -9,6 +9,8 @@ namespace TangoMan\FrontBundle\Model;
  */
 class Th implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Entity name to be used with orderBy
      *
@@ -223,34 +225,5 @@ class Th implements \JsonSerializable
         $this->colspan = $colspan;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [
-//            'name'  => $this->name,
-//            'label' => $this->label,
-//        ];
-//
-//        if ($this->route) {
-//            $json['route'] = $this->route;
-//        }
-//
-//        if (count($this->roles)) {
-//            $json['roles'] = json_encode($this->roles);
-//        }
-//
-//        if ($this->way) {
-//            $json['way'] = $this->way;
-//        }
-//
-//        if ($this->colspan) {
-//            $json['colspan'] = $this->colspan;
-//        }
-
-        return get_object_vars($this);
     }
 }

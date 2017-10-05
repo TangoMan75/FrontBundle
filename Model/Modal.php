@@ -9,6 +9,8 @@ namespace TangoMan\FrontBundle\Model;
  */
 class Modal implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * Modal id
      *
@@ -242,44 +244,5 @@ class Modal implements \JsonSerializable
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->id) {
-//            $json['id'] = $this->id;
-//        }
-//
-//        if ($this->class) {
-//            $json['class'] = $this->class;
-//        }
-//
-//        if ($this->title) {
-//            $json['title'] = $this->title;
-//        }
-//
-//        if ($this->text) {
-//            $json['text'] = $this->text;
-//        }
-//
-//        if ($this->header) {
-//            $json['header'] = $this->header;
-//        }
-//
-//        if ($this->body) {
-//            $json['body'] = $this->body;
-//        }
-//
-//        $buttons = [];
-//        foreach ($this->buttons as $button) {
-//            $buttons[] = $button->jsonSerialize();
-//        }
-//        $json['buttons'] = $buttons;
-
-        return get_object_vars($this);
     }
 }

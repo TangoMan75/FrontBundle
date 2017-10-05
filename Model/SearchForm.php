@@ -11,6 +11,8 @@ use TangoMan\FrontBundle\Model\SearchInput;
  */
 class SearchForm implements \JsonSerializable
 {
+    use Traits\JsonSerializable;
+
     /**
      * @var array
      */
@@ -104,24 +106,5 @@ class SearchForm implements \JsonSerializable
         $this->class = $class;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-//        $json = [];
-//        if ($this->class) {
-//            $json['class'] = $this->class;
-//        }
-//
-//        $inputs = [];
-//        foreach ($this->inputs as $input) {
-//            $inputs[] = $input->jsonSerialize();
-//        }
-//        $json['inputs'] = $inputs;
-
-        return get_object_vars($this);
     }
 }

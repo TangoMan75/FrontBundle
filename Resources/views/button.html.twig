@@ -13,56 +13,61 @@
             {% endif %}
 
             <{{ button.tag }}
-            {% if button.route is defined and button.route %}
-                {# APPEND PARAMETERS TO QUERY STRING #}
-                {% if button.parameters is defined and button.parameters %}
-                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
-                {% else %}
-                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
+                {% if button.route is defined and button.route %}
+                    {# APPEND PARAMETERS TO QUERY STRING #}
+                    {% if button.parameters is defined and button.parameters %}
+                        href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
+                    {% else %}
+                        href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
-            {# APPEND ATTRIBUTES #}
-            {% if button.attributes is defined and button.attributes %}
-                {% for key, value in button.attributes %}
-                    {{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# APPEND TARGET #}
+                {% if button.href is defined and button.href %}
+                    href="{{ button.href }}"
+                {% endif %}
 
-            {# STYLES #}
-            class="{{ button.class ?? 'btn btn-primary' }}"
+                {# APPEND ATTRIBUTES #}
+                {% if button.attributes is defined and button.attributes %}
+                    {% for key, value in button.attributes %}
+                        {{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
 
-            {# APPEND DATA-ATTRIBUTES #}
-            {% if button.data is defined and button.data %}
-                {% for key, value in button.data %}
-                    data-{{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# STYLES #}
+                class="{{ button.class ?? 'btn btn-primary' }}"
 
-            {# DISABLED #}
-            {% if button.disabled is defined and button.disabled %}
-                disabled="disabled"
-            {% endif %}
+                {# APPEND DATA-ATTRIBUTES #}
+                {% if button.data is defined and button.data %}
+                    {% for key, value in button.data %}
+                        data-{{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
 
-            role="button"
+                {# DISABLED #}
+                {% if button.disabled is defined and button.disabled %}
+                    disabled="disabled"
+                {% endif %}
+
+                role="button"
             >
 
-            {# ICON #}
-            {% if button.icon is defined and button.icon %}
-                <span class="{{ button.icon }}" aria-hidden="true"></span>
-            {% endif %}
+                {# ICON #}
+                {% if button.icon is defined and button.icon %}
+                    <span class="{{ button.icon }}" aria-hidden="true"></span>
+                {% endif %}
 
-            {# LABEL #}
-            {% if button.label is defined and button.label %}
-                {% if button.icon is defined and button.icon %}&nbsp;{% endif %}
-                <span{% if button.icon is defined and button.icon %} class="hidden-xs"{% endif %}>{{ button.label|trans }}</span>
-            {% endif %}
+                {# LABEL #}
+                {% if button.label is defined and button.label %}
+                    {% if button.icon is defined and button.icon %}&nbsp;{% endif %}
+                    <span{% if button.icon is defined and button.icon %} class="hidden-xs"{% endif %}>{{ button.label|trans }}</span>
+                {% endif %}
 
-            {# BADGE #}
-            {% if button.badge is defined and button.badge %}
-                {% if button.label is defined and button.label or button.icon is defined and button.icon %}&nbsp;{% endif %}
-                <span class="badge">{{ button.badge }}</span>
-            {% endif %}
+                {# BADGE #}
+                {% if button.badge is defined and button.badge %}
+                    {% if button.label is defined and button.label or button.icon is defined and button.icon %}&nbsp;{% endif %}
+                    <span class="badge">{{ button.badge }}</span>
+                {% endif %}
 
             </{{ button.tag }}>
 
