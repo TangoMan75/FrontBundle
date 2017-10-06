@@ -5,6 +5,7 @@
             <div class="{{ buttonGroup.class ?? 'btn-group' }}" role="group">
                 {% for button in buttonGroup.buttons %}
                     {% include('@TangoManFront/button.html.twig') %}
+                    {% if not loop.last %}&nbsp;{% endif %}
                 {% endfor %}
             </div>
         {% else %}

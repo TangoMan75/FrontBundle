@@ -45,30 +45,22 @@
         {% for th in thead.ths %}
             {% if is_granted(th.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                 {% if route_granted(app.request.attributes.get('_route'), th.pages ?? []) %}
-                    {# Setting default way #}
-                    {% if not th.way is defined %}
-                        {% set thWay = 'ASC' %}
-                    {% else %}
-                        {% if th.way != 'ASC' and th.way != 'DESC' %}
-                            {% set thWay = 'ASC' %}
-                        {% else %}
-                            {% set thWay = th.way %}
-                        {% endif %}
-                    {% endif %}
                     {% if th.route is defined and th.route %}
                         <th
                                 {% if th.colspan is defined and th.colspan %}
                                     colspan="{{ th.colspan }}"
                                 {% endif %}
                                 {% if app.request.query.get('order') %}
-                                    class="{{ app.request.query.get('order') == th.name ? app.request.query.get('way', thWay) }}"
+                                    class="{{ app.request.query.get('order') == th.name ? app.request.query.get('way', way) }}{% if th.class is defined and th.class %} {{ th.class }}{% endif %}"
+                                {% elseif th.class is defined and th.class %}
+                                    class="{{ th.class }}"
                                 {% endif %}
                         >
                             <a href="{{ path(th.route, app.request.query.all|merge({
                                 'page'  : null,
                                 'order' : th.name,
                                 'way'   : app.request.query.get('order') == th.name
-                                and app.request.query.get('way', thWay) == 'ASC' ? 'DESC' : 'ASC'})) }}"
+                                and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}"
                             >
                                 {% if th.icon is defined and th.icon %}
                                     <span class="{{ th.icon }}"></span>

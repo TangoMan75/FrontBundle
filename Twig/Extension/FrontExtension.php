@@ -2,12 +2,20 @@
 
 namespace TangoMan\FrontBundle\Twig\Extension;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+
 class FrontExtension extends \Twig_Extension
 {
     /**
      * @var \Twig_Environment
      */
     private $template;
+
+    /**
+     * @var Request
+     */
+    protected $request;
 
     /**
      * @return string
@@ -22,9 +30,10 @@ class FrontExtension extends \Twig_Extension
      *
      * @param \Twig_Environment $template
      */
-    public function __construct(\Twig_Environment $template)
+    public function __construct(\Twig_Environment $template, RequestStack $requestStack)
     {
         $this->template = $template;
+        $this->request = $requestStack->getCurrentRequest();
     }
 
     /**
@@ -194,10 +203,26 @@ class FrontExtension extends \Twig_Extension
             $thead = json_decode($thead);
         }
 
+        // Set default way
+        parse_str($this->request->getQueryString(), $params);
+        $way = 'ASC';
+        if (isset($params['way'])) {
+            // Correct corrupt way
+            switch ($params['way']) {
+                case 'ASC':
+                case 'DESC':
+                    $way = $params['way'];
+                    break;
+                default:
+                    $way = 'ASC';
+            }
+        }
+
         return $this->template->render(
             $template,
             [
                 'thead' => $thead,
+                'way'   => $way,
             ]
         );
     }

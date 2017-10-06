@@ -2,6 +2,8 @@ services:
     twig.extension.tangoman_front:
         class: TangoMan\FrontBundle\Twig\Extension\FrontExtension
         public: false
-        arguments: ["@twig"]
+        arguments:
+            - "@twig"
+            - "@request_stack"
         tags:
             - { name: twig.extension }
