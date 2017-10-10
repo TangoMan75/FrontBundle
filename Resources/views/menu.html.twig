@@ -16,11 +16,11 @@
                                 <a
                                         {% if item.route is defined and item.route %}
                                             {% if item.callback is defined and item.callback %}
-                                                href="{{ path(item.route, { 'callback': app.request.uri|callback }) }}"
+                                                href="{{ path(item.route, { 'callback': callback() }) }}"
                                             {% elseif item.id is defined and item.id %}
-                                                href="{{ path(item.route, { 'id': item.id, 'callback': app.request.uri|callback }) }}"
+                                                href="{{ path(item.route, { 'id': item.id, 'callback': callback() }) }}"
                                             {% elseif item.slug is defined and item.slug %}
-                                                href="{{ path(item.route, { 'slug': item.parameter.slug, 'callback': app.request.uri|callback }) }}"
+                                                href="{{ path(item.route, { 'slug': item.parameter.slug, 'callback': callback() }) }}"
                                             {% else %}
                                                 href="{{ path(item.route) }}"
                                             {% endif %}
