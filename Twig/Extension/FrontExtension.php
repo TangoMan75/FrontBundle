@@ -2,7 +2,6 @@
 
 namespace TangoMan\FrontBundle\Twig\Extension;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class FrontExtension extends \Twig_Extension
@@ -13,7 +12,7 @@ class FrontExtension extends \Twig_Extension
     private $template;
 
     /**
-     * @var Request
+     * @var RequestStack
      */
     protected $request;
 
