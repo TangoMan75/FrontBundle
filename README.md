@@ -7,33 +7,34 @@ TangoMan Front Bundle
 Features
 ========
 
- - navigation bar
-     - dropdown
- - menus
- - tabs
- - buttons
- - search forms with
-     - inputs
-     - selects
-         - options
-         - optgroups
-     - checkboxes
-     - radio buttons
-     - reset button
-     - submit button
- - pagination
+ - Navigation bar
+     - Dropdown
+ - Menus
+ - Tabs
+ - Buttons
+ - Search forms with
+     - Inputs
+     - Selects
+         - Options
+         - Optgroups
+     - Checkboxes
+     - Radio buttons
+     - Reset button
+     - Submit button
+ - Pagination
 
 Elements can
- - own icon
- - show tooltips
- - be disabled
- - be displayed on specific pages
- - be firewalled
- - toggle popovers
- - toggle modals
- - toggle dropdowns
- - toggle accordion
- - submit form onchange
+
+ - Own icon
+ - Show tooltips
+ - Be disabled
+ - Be displayed on specific pages
+ - Be firewalled
+ - Toggle popovers
+ - Toggle modals
+ - Toggle dropdowns
+ - Toggle accordion
+ - Submit form onchange
 
 Every label or name attibute is automatically translated.
 
@@ -234,7 +235,7 @@ Inputs
         "label": "User"
     },
     {
-        "type": "text",
+        "type": "email",
         "icon": "glyphicon glyphicon-envelope",
         "name": "user-email",
         "label": "Email"
@@ -330,7 +331,9 @@ Buttons
        "class": "btn btn-warning btn-sm",
        "route": "app_admin_user_edit",
        "tooltip": "Edit '~user~' profile",
-       "id": '~user.id~',
+       "parameters": {
+           "id": '~user.id~'
+       },
        "roles": ["ROLE_ADMIN","ROLE_SUPER_ADMIN"]
    },
    {
@@ -338,10 +341,11 @@ Buttons
        "label": "Delete",
        "class": "btn btn-danger btn-sm",
        "route": "app_admin_user_delete",
-       "id": '~user.id~',
+       "parameters": {
+           "id": '~user.id~'
+       },
        "tooltip": "Delete '~user~' profile",
-       "toggle": "modal",
-       "target": ".my-modal",
+       "modal": ".my-modal",
        "roles": ["ROLE_ADMIN","ROLE_SUPER_ADMIN"]
    }
 ]
@@ -375,45 +379,43 @@ Button Groups
 Common errors
 -------------
 
-If you get to see this :   
+If you get to see this :
 ![twig error][twig-error]
-your json probably is invalid.
+your json is probably invalid.
+
+Bootstrap 3 toggles
+===================
+
+| Title           | Toggle                 | Parameters                                     | Attributes    | Link                                                                |
+|:----------------|:-----------------------|:-----------------------------------------------|:--------------|:--------------------------------------------------------------------|
+| Button          | data-toggle="button"   |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle |
+| Buttons         | data-toggle="buttons"  |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#buttons               |
+| Collapse        | data-toggle="collapse" | data-target data-parent href                   |               | https://getbootstrap.com/docs/3.3/javascript/#collapse              |
+| Dropdowns       | data-toggle="dropdown" |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#dropdowns             |
+| Modals          | data-toggle="modal"    | data-target="..."                              | rel="modal"   | https://getbootstrap.com/docs/3.3/javascript/#modals                |
+| Popovers        | data-toggle="popover"  | data-placement data-trigger data-content title | rel="popover" | https://getbootstrap.com/docs/3.3/javascript/#popovers              |
+| Togglable pills | data-toggle="pill"     |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#pills                 |
+| Togglable tabs  | data-toggle="tab"      |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#tabs                  |
+| Tooltips        | data-toggle="tooltip"  | data-original-title data-placement title       |               | https://getbootstrap.com/docs/3.3/javascript/#tooltips              |
 
 TODO
 ====
 
-| Title | toggle | parameters | attributes | link |
-| ----- | ------ | ---------- | ---------- | ---- |
-| Button | data-toggle="button" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle |
-| Buttons | data-toggle="buttons" |  |  | https://getbootstrap.com/docs/3.3/javascript/#buttons |
-| Collapse | data-toggle="collapse" | data-target data-parent href |  | https://getbootstrap.com/docs/3.3/javascript/#collapse |
-| Dropdowns | data-toggle="dropdown" |  |  | https://getbootstrap.com/docs/3.3/javascript/#dropdowns |
-| Modals | data-toogle="modal" | data-target="..." | rel="modal" | https://getbootstrap.com/docs/3.3/javascript/#modals |
-| Popovers | data-toggle="popover" data-placement data-trigger data-content title | rel="popover" | https://getbootstrap.com/docs/3.3/javascript/#popovers |
-| Togglable pills | data-toggle="pill" |  |  | https://getbootstrap.com/docs/3.3/javascript/#pills |
-| Togglable tabs | data-toggle="tab" |  |  | https://getbootstrap.com/docs/3.3/javascript/#tabs |
-| Tooltips | data-toggle="tooltip" | data-original-title data-placement title |  | https://getbootstrap.com/docs/3.3/javascript/#tooltips |
-
-```json
-"popover": "Blablabla"
-```
-
 ```json
 "popover": {
-	"title": "blablaba",
-	"content": "Blablabla"
+    "title": "blablaba",
+    "content": "Blablabla"
 }
 ```
 
 ```json
 "modal": {
-	"title": "blablaba",
-	"header": "blablaba",
-	"body": "Blablabla",
-	"footer": "blabla"
+    "title": "blablaba",
+    "header": "blablaba",
+    "body": "Blablabla",
+    "footer": "blabla"
 }
 ```
-
 
 Note
 ====
@@ -432,7 +434,7 @@ If you like **TangoMan Front Bundle** please star!
 And follow me on GitHub: [TangoMan75](https://github.com/TangoMan75)
 ... And check my other cool projects.
 
-[tangoman.free.fr](http://tangoman.free.fr)
+[Matthias Morin | LinkedIn](https://www.linkedin.com/in/morinmatthias)
 
 [license-GPL]: https://img.shields.io/badge/Licence-GPLv3.0-green.svg
 [license-MIT]: https://img.shields.io/badge/Licence-MIT-green.svg
