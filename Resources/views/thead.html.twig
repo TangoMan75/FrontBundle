@@ -1,45 +1,4 @@
-<style>
-    .ordered-thead > tr > th {
-        border: 0 !important;
-        padding: 0 !important;
-    }
-
-    .ordered-thead > tr > th > a,
-    .ordered-thead > tr > th > span {
-        border-radius: 4px 4px 0 0;
-        border: 1px solid transparent;
-        padding: 10px 15px;
-        display: block;
-        margin-right: 2px;
-    }
-
-    .ordered-thead > tr > th > a:focus,
-    .ordered-thead > tr > th > a:hover {
-        border-color: #eee;
-        background-color: #eee;
-        text-decoration: none;
-    }
-
-    .ordered-thead > tr > th.ASC a,
-    .ordered-thead > tr > th.DESC a {
-        border: 1px solid #ddd;
-        border-bottom-color: transparent;
-    }
-
-    .ordered-thead > tr > th a:before {
-        font-family: 'Glyphicons Halflings';
-        float: right;
-    }
-
-    .ordered-thead > tr > th.ASC a:before {
-        content: "\e253";
-    }
-
-    .ordered-thead > tr > th.DESC a:before {
-        content: "\e252";
-    }
-</style>
-<thead class="ordered-thead">
+<thead class="tango-thead">
 <tr>
     {% spaceless %}
         {% for th in thead.ths %}

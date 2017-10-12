@@ -84,12 +84,32 @@ class AppKernel extends Kernel
 }
 ```
 
+Step 3: Install assets (optional)
+---------------------------------
+
+Copy bundle assets into your project
+
+```console
+$ php bin/console assets:install TangoManFrontBundle 
+```
+
+Inside your stylesheet block
+```html
+<link rel="stylesheet" href="{{ asset('bundles/tangomanfront/tangoman-front-bundle.css') }}">
+```
+
+Inside your javascript block
+```html
+<script src="{{ asset('bundles/tangomanfront/tangoman-front-bundle.js') }}"></script>
+```
+
 Usage
 =====
 
-### Navbar component
+Navbar component
+----------------
 
-If you're using default navbar template, 
+If you're using default navbar template,
 name your routes like the following:
 
  - 'app_login'
@@ -100,12 +120,10 @@ name your routes like the following:
  - 'app_admin_index'
  - 'homepage'
 
-### Search / filter form component
+Search / filter form component
+------------------------------
 
-### Ordered list component
-
-Place use statement in the controller
--------------------------------------
+### Place use statement in the controller
 
 ```php
 use TangoMan\FrontBundle\Model\Button;
@@ -120,8 +138,7 @@ use TangoMan\FrontBundle\Model\Th;
 use TangoMan\FrontBundle\Model\Thead;
 ```
 
-Build object in the controller
-------------------------------
+### Build object in the controller
 
 ```php
 <?php
@@ -151,24 +168,16 @@ class DefaultController extends Controller
         // Text
         $input = new SearchInput();
         $input->setLabel('User')
-            ->setName('user-username');
-        $form->addInput($input);
-
-        // Text
-        $input = new SearchInput();
-        $input->setLabel('Email')
-            ->setName('user-email');
+            ->setName('user-username')
+            ->setType('text');
         $form->addInput($input);
 
         // Select
         $input = new SearchInput();
         $input->setLabel('Role')
-            ->setName('roles-type');
-
-        // Options
-        $option = new SearchOption();
-        $option->setName('All');
-        $input->addOption($option);
+            ->setName('roles-type')
+            ->setPlaceholder('All')
+            ->setType('select');
 
         $option = new SearchOption();
         $option->setName('Administrator')
@@ -188,32 +197,10 @@ class DefaultController extends Controller
             ->setIcon('glyphicon glyphicon-search');
         $form->addInput($input);
 
-        // Optionally use json format
-        $thead = '{
-            "tds": [
-                {
-                    "name": "username",
-                    "label": "User",
-                    "route": "app_user_index"
-                },
-                {
-                    "name": "email",
-                    "label": "Email",
-                    "route": "app_user_index"
-                },
-                {
-                    "label": "Actions",
-                    "roles": ["ROLE_ADMIN","ROLE_MANAGER"],
-                    "colspan": 2
-                }
-            ]
-        }';
-
         return $this->render(
             'user/index.html.twig',
             [
                 'form' => $form,
-                'thead' => $thead,
                 'users' => $users,
             ]
         );
@@ -221,14 +208,16 @@ class DefaultController extends Controller
 }
 ```
 
-Integrate in Twig
------------------
+### Integrate in Twig
 
 ```twig
 <div id="search-form" class="jumbotron">
     {{ searchForm(form) }}
 </div>
 ```
+
+Ordered list component
+----------------------
 
 ```twig
 <table class="table table-striped">
@@ -239,6 +228,7 @@ Integrate in Twig
             <td>
             ...
 ```
+
 
 Examples
 ========

@@ -1,0 +1,12 @@
+{% if buttonGroup.buttons is defined and buttonGroup.buttons %}
+    {% if is_granted(buttonGroup.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
+        {% if route_granted(app.request.attributes.get('_route'), buttonGroup.pages ?? []) %}
+            <div class="tango-form-btn-group form-group{% if buttonGroup.class is defined and buttonGroup.class %} {{ buttonGroup.class }}{% else %} col-xs-12 col-sm-6 col-md-4 col-lg-3{% endif %}"
+                 role="group">
+                {% for button in buttonGroup.buttons %}
+                    {% include('@TangoManFront/button.html.twig') %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}

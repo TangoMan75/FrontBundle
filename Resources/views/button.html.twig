@@ -5,7 +5,7 @@
 
             {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
             {% if button.wrap is defined and button.wrap %}
-                <span style="display: inline-block;"
+                <span class="tango-wrapper"
                 {% for key, value in button.wrap %}
                     data-{{ key }}="{{ value }}"
                 {% endfor %}
@@ -13,6 +13,7 @@
             {% endif %}
 
             <{{ button.tag }}
+
             {% if button.route is defined and button.route %}
                 {# APPEND PARAMETERS TO QUERY STRING #}
                 {% if button.parameters is defined and button.parameters %}

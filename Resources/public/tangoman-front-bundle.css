@@ -1,0 +1,90 @@
+/**
+ * TangoMan Front Bundle
+ *
+ * @author    Matthias Morin <matthias.morin@gmail.com>
+ * @modified  16:00 12/10/2017
+ * @version   1.0.0
+ */
+
+/**
+ * Search Forms
+ */
+.tango-form-group {
+    padding-top: 2.5em;
+}
+
+.tango-btn {
+    padding-top: 1.8em;
+}
+
+.tango-checkbox {
+    padding-top: 1.5em;
+}
+
+.tango-form-btn-group {
+    padding-top: 1.8em;
+}
+
+.tango-form-btn-group button,
+.tango-form-btn-group a {
+    margin-left: 1em;
+    float: right;
+}
+
+/**
+ * Button Groups
+ */
+.tango-btn-group button:not(:last-child),
+.tango-btn-group a:not(:last-child) {
+    margin-right: 1em;
+}
+
+/**
+ * Buttons
+ */
+.tango-wrapper {
+    display: inline-block;
+}
+
+/**
+ * Ordered List Table Head
+ */
+.tango-thead > tr > th {
+    border: 0 !important;
+    padding: 0 !important;
+}
+
+.tango-thead > tr > th > a,
+.tango-thead > tr > th > span {
+    border-radius: 4px 4px 0 0;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    display: block;
+    margin-right: 2px;
+}
+
+.tango-thead > tr > th > a:focus,
+.tango-thead > tr > th > a:hover {
+    border-color: #eee;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+.tango-thead > tr > th.ASC a,
+.tango-thead > tr > th.DESC a {
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.tango-thead > tr > th a:before {
+    font-family: 'Glyphicons Halflings';
+    float: right;
+}
+
+.tango-thead > tr > th.ASC a:before {
+    content: "\e253";
+}
+
+.tango-thead > tr > th.DESC a:before {
+    content: "\e252";
+}

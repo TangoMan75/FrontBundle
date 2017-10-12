@@ -179,7 +179,7 @@
                                     </a>
                                 </li>
                                 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                                    <li>
+                                    <li class="active">
                                         <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">
                                             <span class="glyphicon glyphicon-refresh"></span>
                                             {{ 'tangoman.quit_impersonation'|trans }}
