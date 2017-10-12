@@ -84,8 +84,28 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Place use statement in the controller
----------------------------------------------
+Usage
+=====
+
+### Navbar component
+
+If you're using default navbar template, 
+name your routes like the following:
+
+ - 'app_login'
+ - 'app_check'
+ - 'app_logout'
+ - 'app_user_profile'
+ - 'app_user_edit'
+ - 'app_admin_index'
+ - 'homepage'
+
+### Search / filter form component
+
+### Ordered list component
+
+Place use statement in the controller
+-------------------------------------
 
 ```php
 use TangoMan\FrontBundle\Model\Button;
@@ -100,8 +120,8 @@ use TangoMan\FrontBundle\Model\Th;
 use TangoMan\FrontBundle\Model\Thead;
 ```
 
-Step 4: Build object in the controller
---------------------------------------
+Build object in the controller
+------------------------------
 
 ```php
 <?php
@@ -201,8 +221,8 @@ class DefaultController extends Controller
 }
 ```
 
-Step 5: Integrate in Twig
--------------------------
+Integrate in Twig
+-----------------
 
 ```twig
 <div id="search-form" class="jumbotron">
@@ -386,17 +406,17 @@ your json is probably invalid.
 Bootstrap 3 toggles
 ===================
 
-| Title           | Toggle                 | Parameters                                     | Attributes    | Link                                                                |
-|:----------------|:-----------------------|:-----------------------------------------------|:--------------|:--------------------------------------------------------------------|
-| Button          | data-toggle="button"   |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle |
-| Buttons         | data-toggle="buttons"  |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#buttons               |
-| Collapse        | data-toggle="collapse" | data-target data-parent href                   |               | https://getbootstrap.com/docs/3.3/javascript/#collapse              |
-| Dropdowns       | data-toggle="dropdown" |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#dropdowns             |
-| Modals          | data-toggle="modal"    | data-target="..."                              | rel="modal"   | https://getbootstrap.com/docs/3.3/javascript/#modals                |
-| Popovers        | data-toggle="popover"  | data-placement data-trigger data-content title | rel="popover" | https://getbootstrap.com/docs/3.3/javascript/#popovers              |
-| Togglable pills | data-toggle="pill"     |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#pills                 |
-| Togglable tabs  | data-toggle="tab"      |                                                |               | https://getbootstrap.com/docs/3.3/javascript/#tabs                  |
-| Tooltips        | data-toggle="tooltip"  | data-original-title data-placement title       |               | https://getbootstrap.com/docs/3.3/javascript/#tooltips              |
+| Title             | Toggle                   | Parameters                                       | Attributes      | Link                                                                  |
+| :---------------- | :----------------------- | :----------------------------------------------- | :-------------- | :-------------------------------------------------------------------- |
+| Button            | data-toggle="button"     |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle   |
+| Buttons           | data-toggle="buttons"    |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#buttons                 |
+| Collapse          | data-toggle="collapse"   | data-target data-parent href                     |                 | https://getbootstrap.com/docs/3.3/javascript/#collapse                |
+| Dropdowns         | data-toggle="dropdown"   |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#dropdowns               |
+| Modals            | data-toggle="modal"      | data-target="..."                                | rel="modal"     | https://getbootstrap.com/docs/3.3/javascript/#modals                  |
+| Popovers          | data-toggle="popover"    | data-placement data-trigger data-content title   | rel="popover"   | https://getbootstrap.com/docs/3.3/javascript/#popovers                |
+| Togglable pills   | data-toggle="pill"       |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#pills                   |
+| Togglable tabs    | data-toggle="tab"        |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#tabs                    |
+| Tooltips          | data-toggle="tooltip"    | data-original-title data-placement title         |                 | https://getbootstrap.com/docs/3.3/javascript/#tooltips                |
 
 TODO
 ====
