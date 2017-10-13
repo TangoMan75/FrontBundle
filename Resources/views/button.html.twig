@@ -25,10 +25,8 @@
                 {% else %}
                     href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
-            {% endif %}
-
-            {# append target #}
-            {% if button.href is defined and button.href %}
+            {% elseif button.href is defined and button.href %}
+                {# append target #}
                 href="{{ button.href }}"
             {% endif %}
 

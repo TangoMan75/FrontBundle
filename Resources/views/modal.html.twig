@@ -1,6 +1,6 @@
 {% if is_granted(modal.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if route_granted(app.request.attributes.get('_route'), modal.pages ?? []) %}
-        <div class="{{ modal.class ?? 'modal fade' }}" id="{{ modal.id ?? 'myModal' }}" role="dialog">
+        <div id="{{ modal.id ?? 'tango-modal' }}" class="{{ modal.class ?? 'modal fade' }}" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

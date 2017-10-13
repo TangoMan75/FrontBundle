@@ -1,7 +1,7 @@
 {% if is_granted(link.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if route_granted(app.request.attributes.get('_route'), link.pages ?? []) %}
         {% spaceless %}
-            {% set link = parse_link(link) %}
+            {% set link = parse_button(link) %}
 
             {# wrapping element with <span> when using tooltip and toggle together #}
             {% if link.wrap is defined and link.wrap %}
@@ -25,11 +25,11 @@
                 {% else %}
                     href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
-            {% endif %}
-
-            {# append target #}
-            {% if link.href is defined and link.href %}
+            {% elseif link.href is defined and link.href %}
+                {# append target #}
                 href="{{ link.href }}"
+            {% else %}
+                href="#"
             {% endif %}
 
             {# append attributes #}
@@ -40,7 +40,9 @@
             {% endif %}
 
             {# styles #}
-            class="{{ link.class ?? 'btn btn-primary' }}"
+            {% if link.class is defined and link.class %}
+                class="{{ link.class }}"
+            {% endif %}
 
             {# append data-attributes #}
             {% if link.data is defined and link.data %}
@@ -53,8 +55,6 @@
             {% if link.disabled is defined and link.disabled %}
                 disabled="disabled"
             {% endif %}
-
-            role="link"
             >
 
             {# icon #}

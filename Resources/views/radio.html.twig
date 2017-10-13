@@ -11,8 +11,8 @@
                     <label class="{{ input.class ?? 'radio-inline' }}">
                         <input type="radio"
                                name="{{ input.name }}"
-                               id="input-{{ input.name }}-{{ loop.index }}"
-                                {% if input.autoSubmit is defined and input.autoSubmit %} onchange="this.form.submit()"{% endif %}
+                               id="radio-{{ input.name }}-{{ loop.index }}"
+                                {% if input.submit is defined and input.submit %} onchange="this.form.submit()"{% endif %}
                                 {% if option.disabled is defined and option.disabled %} disabled="disabled"{% endif %}
                                value="{{ option.value }}"
                                 {% if app.request.get(input.name) == option.value %} checked{% endif %}

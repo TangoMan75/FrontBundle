@@ -11,11 +11,11 @@
                     <span class="{{ input.icon }}" aria-hidden="true"></span>
                 </label>
             {% endif %}
-            <input type="{{ input.type }}"
+            <input type="{{ input.type ?? 'text' }}"
                    name="{{ input.name }}"
-                   id="input-{{ input.name }}"
-                   class="{% if input.class is defined and input.class %}{{ input.class }}{% else %}form-control{% endif %}"
-                    {% if input.autoSubmit is defined and input.autoSubmit %} onblur="this.form.submit()"{% endif %}
+                   id="tango-input-{{ input.name }}"
+                   class="{{ input.class ?? form-control }}"
+                    {% if input.submit is defined and input.submit %} onblur="this.form.submit()"{% endif %}
                     {% if input.placeholder is defined and input.placeholder %} placeholder="{{ input.placeholder }}"{% endif %}
                     {% if input.disabled is defined and input.disabled %} disabled="disabled"{% endif %}
                    value="{{ app.request.get(input.name)|join(', ') }}"

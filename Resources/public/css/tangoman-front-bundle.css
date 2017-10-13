@@ -7,28 +7,51 @@
  */
 
 /**
+ * Links
+ */
+.tango-button-icon:not(:last-child),
+.tango-link-icon:not(:last-child) {
+	margin-right: 6px;
+}
+
+/**
+ * Buttons
+ */
+.tango-button-badge:not(:first-child),
+.tango-link-badge:not(:first-child) {
+	margin-left: 6px;
+}
+
+/**
  * Search Forms
  */
 .tango-form-group {
-    padding-top: 2.5em;
+	padding-top: 2.5em;
 }
 
 .tango-form-btn {
-    padding-top: 1.8em;
+	padding-top: 1.8em;
 }
 
 .tango-form-checkbox {
-    padding-top: 1.5em;
+	padding-top: 1.5em;
 }
 
 .tango-form-btn-group {
-    padding-top: 1.8em;
+	padding-top: 1.8em;
 }
 
 .tango-form-btn-group button,
 .tango-form-btn-group a {
-    margin-left: 1em;
-    float: right;
+	margin-left: 1em;
+	float: right;
+}
+
+/**
+ * Tabs
+ */
+.tango-tabs {
+	margin-bottom: 1em;
 }
 
 /**
@@ -36,60 +59,60 @@
  */
 .tango-btn-group button:not(:last-child),
 .tango-btn-group a:not(:last-child) {
-    margin-right: 1em;
+	margin-right: 1em;
 }
 
 /**
  * Buttons
  */
 .tango-tooltip-wrapper {
-    display: inline-block;
+	display: inline-block;
 }
 
 /**
  * Ordered List Table Head
  */
 .tango-thead > tr > th {
-    border: 0 !important;
-    padding: 0 !important;
+	border: 0 !important;
+	padding: 0 !important;
 }
 
 .tango-thead > tr > th > a,
 .tango-thead > tr > th > span {
-    border-radius: 4px 4px 0 0;
-    border: 1px solid transparent;
-    padding: 10px 15px;
-    display: block;
-    margin-right: 2px;
+	border-radius: 4px 4px 0 0;
+	border: 1px solid transparent;
+	padding: 10px 15px;
+	display: block;
+	margin-right: 2px;
 }
 
 .tango-thead > tr > th > a:focus,
 .tango-thead > tr > th > a:hover {
-    border-color: #eee;
-    background-color: #eee;
-    text-decoration: none;
+	border-color: #eee;
+	background-color: #eee;
+	text-decoration: none;
 }
 
 .tango-thead > tr > th.ASC a,
 .tango-thead > tr > th.DESC a {
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
 }
 
 .tango-thead > tr > th a:before {
-    font-family: 'Glyphicons Halflings';
-    float: right;
+	font-family: 'Glyphicons Halflings';
+	float: right;
 }
 
 .tango-thead > tr > th.ASC a:before {
-    content: "\e253";
+	content: "\e253";
 }
 
 .tango-thead > tr > th.DESC a:before {
-    content: "\e252";
+	content: "\e252";
 }
 
 /* just enough space to place three small buttons + overrides bootstrap default */
 .tango-actions {
-    min-width: 126px !important;
+	min-width: 126px !important;
 }

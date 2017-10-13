@@ -4,9 +4,9 @@
             <label>
                 <input type="checkbox"
                        name="{{ input.name }}"
-                       id="input-{{ input.name }}"
+                       id="tango-checkbox-{{ input.name }}"
                         {% if input.class is defined and input.class %} class="{{ input.class }}"{% endif %}
-                        {% if input.autoSubmit is defined and input.autoSubmit %} onchange="this.form.submit()"{% endif %}
+                        {% if input.submit is defined and input.submit %} onchange="this.form.submit()"{% endif %}
                         {% if input.disabled is defined and input.disabled %} disabled="disabled"{% endif %}
                        value="{{ app.request.get(input.name) }}"
                 />

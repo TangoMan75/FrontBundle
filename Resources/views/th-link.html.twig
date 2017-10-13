@@ -1,0 +1,57 @@
+{% if is_granted(th.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
+    {% if route_granted(app.request.attributes.get('_route'), th.pages ?? []) %}
+        {% spaceless %}
+            {% set th = parse_button(th) %}
+
+            <a
+                {% if th.id is defined and th.id %}
+                    id="{{ th.id }}"
+                {% endif %}
+
+                    href="{{ path(th.route, app.request.query.all|merge({'page': null, 'order': th.name, 'way': app.request.query.get('order') == th.name and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}"
+
+            {# append attributes #}
+            {% if th.attributes is defined and th.attributes %}
+                {% for key, value in th.attributes %}
+                    {{ key }}="{{ value }}"
+                {% endfor %}
+            {% endif %}
+
+            {# styles #}
+            {% if th.class is defined and th.class %}
+                class="{{ th.class }}"
+            {% endif %}
+
+            {# append data-attributes #}
+            {% if th.data is defined and th.data %}
+                {% for key, value in th.data %}
+                    data-{{ key }}="{{ value }}"
+                {% endfor %}
+            {% endif %}
+
+            {# disabled #}
+            {% if th.disabled is defined and th.disabled %}
+                disabled="disabled"
+            {% endif %}
+            >
+
+            {# icon #}
+            {% if th.icon is defined and th.icon %}
+                <span class="tango-th-icon {{ th.icon }}" aria-hidden="true"></span>
+            {% endif %}
+
+            {# label #}
+            {% if th.label is defined and th.label %}
+                <span class="tango-th-label">{{ th.label|trans }}</span>
+            {% endif %}
+
+            {# badge #}
+            {% if th.badge is defined and th.badge %}
+                <span class="tango-th-badge badge">{{ th.badge }}</span>
+            {% endif %}
+
+            </a>
+
+        {% endspaceless %}
+    {% endif %}
+{% endif %}

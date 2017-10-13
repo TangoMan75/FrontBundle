@@ -7,38 +7,47 @@ TangoMan Front Bundle
 Features
 ========
 
- - Navigation bar
-     - Dropdown
- - Menus
- - Tabs
- - Buttons
- - Search forms with
-     - Inputs
-     - Selects
-         - Options
-         - Optgroups
-     - Checkboxes
-     - Radio buttons
-     - Reset button
-     - Submit button
- - Pagination
+- Navigation bar
+    - Dropdown
+- Menus
+- Tabs
+- Buttons
+- Search forms
+    - Inputs
+    - Selects
+    - Options
+        - Optgroups
+    - Checkboxes
+    - Radio buttons
+    - Reset button
+    - Submit button
 
-Elements can
+All elements can :
 
- - Own icon
- - Show tooltips
- - Be disabled
- - Be displayed on specific pages
- - Be firewalled
- - Toggle popovers
- - Toggle modals
- - Toggle dropdowns
- - Toggle accordion
- - Submit form onchange
+- Own class
+- Own id
 
-Every label or name attibute is automatically translated.
+Links, buttons, menu items, tabs can :
 
-You can easilly create your own template as well.
+- Own icons
+- Own translatable labels
+- Own badges
+- Own parameters
+- Be disabled
+- Be displayed on specific pages
+- Be firewalled
+- Trigger callbacks
+- Show tooltips
+- Toggle popovers
+- Toggle modals
+- Toggle dropdowns
+- Toggle accordion
+
+And buttons can :
+
+- Submit form on change
+
+You can easily create your own template as well.
 
 Installation
 ============
@@ -77,12 +86,15 @@ class AppKernel extends Kernel
         $bundles = array(
             // ...
             new TangoMan\FrontBundle\TangoManFrontBundle(),
+            new TangoMan\CallbackBundle\TangoManCallbackBundle(),
         );
 
         // ...
     }
 }
 ```
+
+Since **TangoMan Front Bundle** requires **[TangoMan Callback Bundle](https://github.com/TangoMan75/CallbackBundle)** enable it in the `app/AppKernel.php` as well.
 
 Usage
 =====
@@ -93,7 +105,7 @@ Front Assets
 Assets should copy automatically, if for whatever reason you need to reinstall them manually type following command :
 
 ```console
-$ php bin/console assets:install TangoManFrontBundle 
+$ php bin/console assets:install TangoManFrontBundle
 ```
 
 In order for elements to display properly include `<link>` and `<script>` tags inside your stylesheet block...
@@ -235,6 +247,72 @@ Ordered list component
             ...
 ```
 
+Inputs
+------
+
+|  Attribute  |   Status  |          Default value           |
+|-------------|-----------|----------------------------------|
+| class       | optional  | form-control                     |
+| disabled    | optional  | null                             |
+| icon        | optional  | null                             |
+| id          | optional  | tango-input-{{ input.name }}     |
+| label       | optional  | null                             |
+| name        | mandatory | null                             |
+| pages       | optional  | []                               |
+| placeholder | optional  | null                             |
+| roles       | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
+| submit      | optional  | false                            |
+| type        | optional  | text                             |
+| value       | auto      | app.request.get(input.name)      |
+
+Selects
+-------
+
+|  Attribute  |   Status  |          Default value           |
+|-------------|-----------|----------------------------------|
+| class       | optional  | 'form-control'                   |
+| disabled    | optional  | null                             |
+| icon        | optional  | null                             |
+| id          | optional  | tango-select-{{ input.name }}    |
+| label       | optional  | null                             |
+| name        | mandatory | null                             |
+| options     | optional  | null                             |
+| pages       | optional  | []                               |
+| placeholder | optional  | null                             |
+| roles       | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
+| submit      | optional  | false                            |
+| type        | optional  | 'text'                           |
+
+Buttons
+-------
+
+| Attribute  |   Status  |          Default value           |
+|------------|-----------|----------------------------------|
+| attributes | optional  | null                             |
+| badge      | optional  | null                             |
+| class      | optional  | 'btn btn-primary'                |
+| data       | optional  | null                             |
+| disabled   | optional  | null                             |
+| href       | optional  | null                             |
+| icon       | optional  | null                             |
+| id         | optional  | null                             |
+| label      | optional  | null                             |
+| pages      | optional  | []                               |
+| parameters | optional  | null                             |
+| roles      | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
+| route      | mandatory | null                             |
+
+Options
+-------
+
+| Attribute |   Status  |          Default value           |
+|-----------|-----------|----------------------------------|
+| disabled  | optional  | null                             |
+| id        | optional  | null                             |
+| name      | mandatory | null                             |
+| pages     | optional  | []                               |
+| roles     | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
+| value     | mandatory | null                             |
 
 Examples
 ========
@@ -392,12 +470,30 @@ Button Groups
     }]
 ```
 
-Common errors
--------------
 
-If you get to see this :
+**TangoMan Front Bundle** classes
+=================================
+
+.tango-actions
+.tango-btn-group
+.tango-button-badge
+.tango-button-icon
+.tango-form
+.tango-form-btn
+.tango-form-checkbox
+.tango-form-group
+.tango-link-badge
+.tango-link-icon
+.tango-thead
+.tango-tooltip-wrapper
+
+Error
+=====
+
+When you get to see this :
 ![twig error][twig-error]
-your json is probably invalid.
+It means your json is invalid. Don't worry you probrably just missed a comma somewhere.
+
 
 Bootstrap 3 toggles
 ===================
@@ -413,25 +509,6 @@ Bootstrap 3 toggles
 | Togglable pills   | data-toggle="pill"       |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#pills                   |
 | Togglable tabs    | data-toggle="tab"        |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#tabs                    |
 | Tooltips          | data-toggle="tooltip"    | data-original-title data-placement title         |                 | https://getbootstrap.com/docs/3.3/javascript/#tooltips                |
-
-TODO
-====
-
-```json
-"popover": {
-    "title": "blablaba",
-    "content": "Blablabla"
-}
-```
-
-```json
-"modal": {
-    "title": "blablaba",
-    "header": "blablaba",
-    "body": "Blablabla",
-    "footer": "blabla"
-}
-```
 
 Note
 ====

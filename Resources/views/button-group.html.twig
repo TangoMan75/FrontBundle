@@ -2,7 +2,11 @@
     {% if route_granted(app.request.attributes.get('_route'), buttonGroup.pages ?? []) %}
         {# you can have buttongroup or buttons, not both #}
         {% if buttonGroup.buttons is defined and buttonGroup.buttons %}
-            <div class="tango-btn-group {{ buttonGroup.class ?? 'btn-group' }}" role="group">
+            <div
+                    {% if buttonGroup.id is defined and buttonGroup.id %}
+                        id="{{ buttonGroup.id }}"
+                    {% endif %}
+                    class="tango-btn-group {{ buttonGroup.class ?? 'btn-group' }}" role="group">
                 {% for button in buttonGroup.buttons %}
                     {% include('@TangoManFront/button.html.twig') %}
                 {% endfor %}
