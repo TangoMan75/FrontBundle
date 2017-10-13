@@ -202,11 +202,12 @@ class FrontExtension extends \Twig_Extension
             $thead = json_decode($thead);
         }
 
-        // Set default way
         parse_str($this->request->getQueryString(), $params);
+
+        // Set default way
         $way = 'ASC';
         if (isset($params['way'])) {
-            // Correct corrupt way
+            // Correct invalid way if any
             switch ($params['way']) {
                 case 'ASC':
                 case 'DESC':

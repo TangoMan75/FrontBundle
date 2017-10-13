@@ -23,7 +23,7 @@
                 {% endif %}
             </div>
             <div class="collapse navbar-collapse">
-                {# USER IS AUTHENTICATED #}
+                {# user is authenticated #}
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {% if is_granted(menu.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                         {% spaceless %}
@@ -110,7 +110,7 @@
                                                 {% endif %}
                                             {% endif %}
                                         {% else %}
-                                            {# USER IS NOT LOGGED IN #}
+                                            {# user is not logged in #}
                                             {% if is_granted(item.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                                                 {% if route_granted(app.request.attributes.get('_route'), item.pages ?? []) %}
                                                     {% if item.active is defined %}

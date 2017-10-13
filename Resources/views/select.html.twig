@@ -13,19 +13,19 @@
                     class="{{ input.class ?? 'form-control' }}"
                     {% if input.autoSubmit is defined and input.autoSubmit %} onchange="this.input.submit()"{% endif %}
                     {% if input.disabled is defined and input.disabled %} disabled="disabled"{% endif %}>
-                {# PLACEHOLDER #}
+                {# placeholder #}
                 {% if input.placeholder is defined and input.placeholder %}
                     <option value="">
                         {{ input.placeholder|trans }}
                     </option>
                 {% endif %}
-                {# OPTIONS #}
+                {# options #}
                 {% if input.options is defined and input.options %}
                     {% for option in input.options %}
                         {% include('@TangoManFront/option.html.twig') %}
                     {% endfor %}
                 {% endif %}
-                {# OPTGROUPS #}
+                {# optgroups #}
                 {% if input.optgroups is defined and input.optgroups %}
                     {% for optgroup in input.optgroups %}
                         <optgroup

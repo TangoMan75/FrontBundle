@@ -1,7 +1,7 @@
 {
 	"name": "tangoman/front-bundle",
 	"description": "Symfony Front Twig Extension Bundle",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"type": "symfony-bundle",
 	"keywords": [
 		"Front",
@@ -34,6 +34,11 @@
 		"php": ">=5.4.0",
 		"twig/twig": "~1.12|~2",
 		"tangoman/callback-bundle": "^2.0"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php ../../../bin/console assets:install TangoManFrontBundle"
+		]
 	},
 	"autoload": {
 		"psr-4": {

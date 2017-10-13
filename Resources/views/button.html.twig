@@ -3,9 +3,9 @@
         {% spaceless %}
             {% set button = parse_button(button) %}
 
-            {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
+            {# wrapping element with <span> when using tooltip and toggle together #}
             {% if button.wrap is defined and button.wrap %}
-                <span class="tango-wrapper"
+                <span class="tango-tooltip-wrapper"
                 {% for key, value in button.wrap %}
                     data-{{ key }}="{{ value }}"
                 {% endfor %}
@@ -14,8 +14,12 @@
 
             <{{ button.tag }}
 
+            {% if button.id is defined and button.id %}
+                id="{{ button.id }}"
+            {% endif %}
+
             {% if button.route is defined and button.route %}
-                {# APPEND PARAMETERS TO QUERY STRING #}
+                {# append parameters to query string #}
                 {% if button.parameters is defined and button.parameters %}
                     href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
                 {% else %}
@@ -23,29 +27,29 @@
                 {% endif %}
             {% endif %}
 
-            {# APPEND TARGET #}
+            {# append target #}
             {% if button.href is defined and button.href %}
                 href="{{ button.href }}"
             {% endif %}
 
-            {# APPEND ATTRIBUTES #}
+            {# append attributes #}
             {% if button.attributes is defined and button.attributes %}
                 {% for key, value in button.attributes %}
                     {{ key }}="{{ value }}"
                 {% endfor %}
             {% endif %}
 
-            {# STYLES #}
+            {# styles #}
             class="{{ button.class ?? 'btn btn-primary' }}"
 
-            {# APPEND DATA-ATTRIBUTES #}
+            {# append data-attributes #}
             {% if button.data is defined and button.data %}
                 {% for key, value in button.data %}
                     data-{{ key }}="{{ value }}"
                 {% endfor %}
             {% endif %}
 
-            {# DISABLED #}
+            {# disabled #}
             {% if button.disabled is defined and button.disabled %}
                 disabled="disabled"
             {% endif %}
@@ -53,21 +57,19 @@
             role="button"
             >
 
-            {# ICON #}
+            {# icon #}
             {% if button.icon is defined and button.icon %}
-                <span class="{{ button.icon }}" aria-hidden="true"></span>
+                <span class="tango-button-icon {{ button.icon }}" aria-hidden="true"></span>
             {% endif %}
 
-            {# LABEL #}
+            {# label #}
             {% if button.label is defined and button.label %}
-                {% if button.icon is defined and button.icon %}&nbsp;{% endif %}
-                <span{% if button.icon is defined and button.icon %} class="hidden-xs"{% endif %}>{{ button.label|trans }}</span>
+                <span class="tango-button-label">{{ button.label|trans }}</span>
             {% endif %}
 
-            {# BADGE #}
+            {# badge #}
             {% if button.badge is defined and button.badge %}
-                {% if button.label is defined and button.label or button.icon is defined and button.icon %}&nbsp;{% endif %}
-                <span class="badge">{{ button.badge }}</span>
+                <span class="tango-button-badge badge">{{ button.badge }}</span>
             {% endif %}
 
             </{{ button.tag }}>

@@ -2,7 +2,7 @@
  * TangoMan Front Bundle
  *
  * @author    Matthias Morin <matthias.morin@gmail.com>
- * @modified  16:00 12/10/2017
+ * @modified  15:00 13/10/2017
  * @version   1.0.0
  */
 
@@ -13,11 +13,11 @@
     padding-top: 2.5em;
 }
 
-.tango-btn {
+.tango-form-btn {
     padding-top: 1.8em;
 }
 
-.tango-checkbox {
+.tango-form-checkbox {
     padding-top: 1.5em;
 }
 
@@ -42,7 +42,7 @@
 /**
  * Buttons
  */
-.tango-wrapper {
+.tango-tooltip-wrapper {
     display: inline-block;
 }
 
@@ -87,4 +87,9 @@
 
 .tango-thead > tr > th.DESC a:before {
     content: "\e252";
+}
+
+/* just enough space to place three small buttons + overrides bootstrap default */
+.tango-actions {
+    min-width: 126px !important;
 }

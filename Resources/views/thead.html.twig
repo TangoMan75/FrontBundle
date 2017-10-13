@@ -1,47 +1,31 @@
 <thead class="tango-thead">
 <tr>
-    {% spaceless %}
-        {% for th in thead.ths %}
-            {% if is_granted(th.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
-                {% if route_granted(app.request.attributes.get('_route'), th.pages ?? []) %}
-                    {% if th.route is defined and th.route %}
-                        <th
-                                {% if th.colspan is defined and th.colspan %}
-                                    colspan="{{ th.colspan }}"
-                                {% endif %}
-                                {% if app.request.query.get('order') %}
-                                    class="{{ app.request.query.get('order') == th.name ? app.request.query.get('way', way) }}{% if th.class is defined and th.class %} {{ th.class }}{% endif %}"
-                                {% elseif th.class is defined and th.class %}
-                                    class="{{ th.class }}"
-                                {% endif %}
-                        >
-                            <a href="{{ path(th.route, app.request.query.all|merge({
-                                'page'  : null,
-                                'order' : th.name,
-                                'way'   : app.request.query.get('order') == th.name
-                                and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}"
-                            >
-                                {% if th.icon is defined and th.icon %}
-                                    <span class="{{ th.icon }}"></span>
-                                {% endif %}
-                                {% if th.label is defined and th.label %}
-                                    {{ th.label|trans }}
-                                {% endif %}
-                            </a>
-                        </th>
-                    {% else %}
-                        <th{% if th.colspan is defined and th.colspan %} colspan="{{ th.colspan }}"{% endif %}>
+    {% for th in thead.ths %}
+        {% if is_granted(th.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
+            {% if route_granted(app.request.attributes.get('_route'), th.pages ?? []) %}
+                {% if th.route is defined and th.route %}
+                    <th{% if th.colspan is defined and th.colspan %} colspan="{{ th.colspan }}"{% endif %}{% if app.request.query.get('order') %} class="{{ app.request.query.get('order') == th.name ? app.request.query.get('way', way) }}{% if th.class is defined and th.class %} {{ th.class }}{% endif %}" {% elseif th.class is defined and th.class %} class="{{ th.class }}"{% endif %}>
+                        <a href="{{ path(th.route, app.request.query.all|merge({'page': null, 'order': th.name, 'way': app.request.query.get('order') == th.name and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}">
                             {% if th.icon is defined and th.icon %}
-                                <span class="{{ th.icon }}"></span>
+                                <span class="tango-th-icon {{ th.icon }}"></span>
                             {% endif %}
                             {% if th.label is defined and th.label %}
-                                <span>{{ th.label|trans }}</span>
+                                <span class="tango-th-label">{{ th.label|trans }}</span>
                             {% endif %}
-                        </th>
-                    {% endif %}
+                        </a>
+                    </th>
+                {% else %}
+                    <th{% if th.colspan is defined and th.colspan %} colspan="{{ th.colspan }}"{% endif %}{% if th.class is defined and th.class %} class="{{ th.class }}"{% endif %}>
+                        {% if th.icon is defined and th.icon %}
+                            <span class="tango-th-icon {{ th.icon }}"></span>
+                        {% endif %}
+                        {% if th.label is defined and th.label %}
+                            <span class="tango-th-label">{{ th.label|trans }}</span>
+                        {% endif %}
+                    </th>
                 {% endif %}
             {% endif %}
-        {% endfor %}
-    {% endspaceless %}
+        {% endif %}
+    {% endfor %}
 </tr>
 </thead>

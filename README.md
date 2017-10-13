@@ -84,27 +84,33 @@ class AppKernel extends Kernel
 }
 ```
 
-Step 3: Install assets (optional)
----------------------------------
+Usage
+=====
 
-Copy bundle assets into your project
+Front Assets
+------------
+
+Assets should copy automatically, if for whatever reason you need to reinstall them manually type following command :
 
 ```console
 $ php bin/console assets:install TangoManFrontBundle 
 ```
 
-Inside your stylesheet block
-```html
-<link rel="stylesheet" href="{{ asset('bundles/tangomanfront/tangoman-front-bundle.css') }}">
+In order for elements to display properly include `<link>` and `<script>` tags inside your stylesheet block...
+```twig
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/tangomanfront/css/tangoman-front-bundle.css') }}">
+{% endblock %}
 ```
 
-Inside your javascript block
-```html
-<script src="{{ asset('bundles/tangomanfront/tangoman-front-bundle.js') }}"></script>
+...and your javascript block
+```twig
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/tangomanfront/js/tangoman-front-bundle.js') }}"></script>
+{% endblock %}
 ```
-
-Usage
-=====
 
 Navbar component
 ----------------

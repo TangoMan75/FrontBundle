@@ -1,11 +1,11 @@
 {% if is_granted(link.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
     {% if route_granted(app.request.attributes.get('_route'), link.pages ?? []) %}
         {% spaceless %}
-            {% set link = parse_button(link) %}
+            {% set link = parse_link(link) %}
 
-            {# WRAPPING ELEMENT WITH <SPAN> WHEN USING TOOLTIP AND TOGGLE TOGETHER #}
+            {# wrapping element with <span> when using tooltip and toggle together #}
             {% if link.wrap is defined and link.wrap %}
-                <span style="display: inline-block;"
+                <span class="tango-tooltip-wrapper"
                 {% for key, value in link.wrap %}
                     data-{{ key }}="{{ value }}"
                 {% endfor %}
@@ -13,61 +13,64 @@
             {% endif %}
 
             <a
-                {% if link.route is defined and link.route %}
-                    {# APPEND PARAMETERS TO QUERY STRING #}
-                    {% if link.parameters is defined and link.parameters %}
-                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters))) }}"
-                    {% else %}
-                        href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
-                    {% endif %}
-                {% endif %}
 
-                {# APPEND TARGET #}
-                {% if link.href is defined and link.href %}
-                    href="{{ link.href }}"
-                {% endif %}
+            {% if link.id is defined and link.id %}
+                id="{{ link.id }}"
+            {% endif %}
 
-                {# APPEND ATTRIBUTES #}
-                {% if link.attributes is defined and link.attributes %}
-                    {% for key, value in link.attributes %}
-                        {{ key }}="{{ value }}"
-                    {% endfor %}
+            {% if link.route is defined and link.route %}
+                {# append parameters to query string #}
+                {% if link.parameters is defined and link.parameters %}
+                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(link.parameters))) }}"
+                {% else %}
+                    href="{{ path(link.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
                 {% endif %}
+            {% endif %}
 
-                {# STYLES #}
-                {% if link.class is defined and link.class %}
-                    class="{{ link.class }}"
-                {% endif %}
+            {# append target #}
+            {% if link.href is defined and link.href %}
+                href="{{ link.href }}"
+            {% endif %}
 
-                {# APPEND DATA-ATTRIBUTES #}
-                {% if link.data is defined and link.data %}
-                    {% for key, value in link.data %}
-                        data-{{ key }}="{{ value }}"
-                    {% endfor %}
-                {% endif %}
+            {# append attributes #}
+            {% if link.attributes is defined and link.attributes %}
+                {% for key, value in link.attributes %}
+                    {{ key }}="{{ value }}"
+                {% endfor %}
+            {% endif %}
 
-                {# DISABLED #}
-                {% if link.disabled is defined and link.disabled %}
-                    disabled="disabled"
-                {% endif %}
+            {# styles #}
+            class="{{ link.class ?? 'btn btn-primary' }}"
+
+            {# append data-attributes #}
+            {% if link.data is defined and link.data %}
+                {% for key, value in link.data %}
+                    data-{{ key }}="{{ value }}"
+                {% endfor %}
+            {% endif %}
+
+            {# disabled #}
+            {% if link.disabled is defined and link.disabled %}
+                disabled="disabled"
+            {% endif %}
+
+            role="link"
             >
 
-                {# ICON #}
-                {% if link.icon is defined and link.icon %}
-                    <span class="{{ link.icon }}" aria-hidden="true"></span>
-                {% endif %}
+            {# icon #}
+            {% if link.icon is defined and link.icon %}
+                <span class="tango-link-icon {{ link.icon }}" aria-hidden="true"></span>
+            {% endif %}
 
-                {# LABEL #}
-                {% if link.label is defined and link.label %}
-                    {% if link.icon is defined and link.icon %}&nbsp;{% endif %}
-                    <span{% if link.icon is defined and link.icon %} class="hidden-xs"{% endif %}>{{ link.label|trans }}</span>
-                {% endif %}
+            {# label #}
+            {% if link.label is defined and link.label %}
+                <span class="tango-link-label">{{ link.label|trans }}</span>
+            {% endif %}
 
-                {# BADGE #}
-                {% if link.badge is defined and link.badge %}
-                    {% if link.label is defined and link.label or link.icon is defined and link.icon %}&nbsp;{% endif %}
-                    <span class="badge">{{ link.badge }}</span>
-                {% endif %}
+            {# badge #}
+            {% if link.badge is defined and link.badge %}
+                <span class="tango-link-badge badge">{{ link.badge }}</span>
+            {% endif %}
 
             </a>
 

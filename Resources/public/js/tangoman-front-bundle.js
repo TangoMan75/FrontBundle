@@ -11,5 +11,6 @@ $(function () {
         e.preventDefault();
         $('.tango-form').find('input:text, input:password, input[type="number"], select, textarea').val('');
         $('.tango-form').find('input:radio, input:checkbox').prop('checked', false);
+        this.form.submit();
     });
 });
