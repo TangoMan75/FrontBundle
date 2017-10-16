@@ -1,7 +1,7 @@
 {
 	"name": "tangoman/front-bundle",
 	"description": "Symfony Front Twig Extension Bundle",
-	"version": "2.0.1",
+	"version": "2.1.1",
 	"type": "symfony-bundle",
 	"keywords": [
 		"Front",
