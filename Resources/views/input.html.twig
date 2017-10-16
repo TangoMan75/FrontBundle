@@ -14,7 +14,7 @@
             <input type="{{ input.type ?? 'text' }}"
                    name="{{ input.name }}"
                    id="tango-input-{{ input.name }}"
-                   class="{{ input.class ?? form-control }}"
+                   class="{{ input.class ?? 'form-control' }}"
                     {% if input.submit is defined and input.submit %} onblur="this.form.submit()"{% endif %}
                     {% if input.placeholder is defined and input.placeholder %} placeholder="{{ input.placeholder }}"{% endif %}
                     {% if input.disabled is defined and input.disabled %} disabled="disabled"{% endif %}
