@@ -302,6 +302,25 @@ Buttons
 | roles      | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
 | route      | mandatory | null                             |
 
+Links
+-----
+
+| Attribute  |   Status  |          Default value           |
+|------------|-----------|----------------------------------|
+| attributes | optional  | null                             |
+| badge      | optional  | null                             |
+| class      | optional  | null                             |
+| data       | optional  | null                             |
+| disabled   | optional  | null                             |
+| href       | optional  | null                             |
+| icon       | optional  | null                             |
+| id         | optional  | null                             |
+| label      | optional  | null                             |
+| pages      | optional  | []                               |
+| parameters | optional  | null                             |
+| roles      | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
+| route      | mandatory | null                             |
+
 Options
 -------
 
@@ -313,6 +332,7 @@ Options
 | pages     | optional  | []                               |
 | roles     | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
 | value     | mandatory | null                             |
+
 
 Examples
 ========

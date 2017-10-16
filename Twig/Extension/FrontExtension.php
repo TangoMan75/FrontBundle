@@ -57,10 +57,10 @@ class FrontExtension extends \Twig_Extension
                 'thead', [$this, 'theadFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
-                'buttons', [$this, 'buttonsFunction'], ['is_safe' => ['html']]
+                'modal', [$this, 'modalFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
-                'modal', [$this, 'modalFunction'], ['is_safe' => ['html']]
+                'buttons', [$this, 'buttonsFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
                 'parse_button', [$this, 'parseButtonFunction']
@@ -233,10 +233,10 @@ class FrontExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function buttonsFunction($buttonGroup, $template = 'button-group')
+    public function modalFunction($buttonGroup, $template = 'modal')
     {
         $templates = [
-            'button-group',
+            'modal',
         ];
 
         if (in_array($template, $templates)) {
@@ -261,10 +261,10 @@ class FrontExtension extends \Twig_Extension
      *
      * @return string
      */
-    public function modalFunction($buttonGroup, $template = 'modal')
+    public function buttonsFunction($buttonGroup, $template = 'button-group')
     {
         $templates = [
-            'modal',
+            'button-group',
         ];
 
         if (in_array($template, $templates)) {
