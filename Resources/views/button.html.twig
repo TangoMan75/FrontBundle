@@ -57,17 +57,17 @@
 
             {# icon #}
             {% if button.icon is defined and button.icon %}
-                <span class="tango-button-icon {{ button.icon }}" aria-hidden="true"></span>
+                <span class="tango-btn-icon {{ button.icon }}" aria-hidden="true"></span>
             {% endif %}
 
             {# label #}
             {% if button.label is defined and button.label %}
-                <span class="tango-button-label">{{ button.label|trans }}</span>
+                <span class="tango-btn-label">{{ button.label|trans }}</span>
             {% endif %}
 
             {# badge #}
             {% if button.badge is defined and button.badge %}
-                <span class="tango-button-badge badge">{{ button.badge }}</span>
+                <span class="tango-btn-badge badge">{{ button.badge }}</span>
             {% endif %}
 
             </{{ button.tag }}>

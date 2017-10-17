@@ -9,7 +9,7 @@
 /**
  * Links
  */
-.tango-button-icon:not(:last-child),
+.tango-btn-icon:not(:last-child),
 .tango-link-icon:not(:last-child) {
 	margin-right: 6px;
 }
@@ -17,7 +17,7 @@
 /**
  * Buttons
  */
-.tango-button-badge:not(:first-child),
+.tango-btn-badge:not(:first-child),
 .tango-link-badge:not(:first-child) {
 	margin-left: 6px;
 }
