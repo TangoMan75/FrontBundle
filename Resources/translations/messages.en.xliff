@@ -2,28 +2,86 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="tangoman.show_my_profile">
-                <source>tangoman.show_my_profile</source>
+            <trans-unit id="action.new">
+                <source>tango.action_new</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="tango.action_index">
+                <source>tango.action_index</source>
+                <target>Index</target>
+            </trans-unit>
+            <trans-unit id="tango.action_list">
+                <source>tango.action_list</source>
+                <target>List</target>
+            </trans-unit>
+            <trans-unit id="tango.action_show">
+                <source>tango.action_show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="tango.action_edit">
+                <source>tango.action_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="tango.action_delete">
+                <source>tango.action_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="tango.action_save">
+                <source>tango.action_save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="tango.action_import">
+                <source>tango.action_import</source>
+                <target>Import</target>
+            </trans-unit>
+            <trans-unit id="tango.action_export">
+                <source>tango.action_export</source>
+                <target>Export</target>
+            </trans-unit>
+            <trans-unit id="tango.action_submit">
+                <source>tango.action_submit</source>
+                <target>Submit</target>
+            </trans-unit>
+            <trans-unit id="tango.action_cancel">
+                <source>tango.action_cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="tango.action_login">
+                <source>tango.action_login</source>
+                <target>Login</target>
+            </trans-unit>
+
+            <trans-unit id="tango.label_username_or_email">
+                <source>tango.label_username_or_email</source>
+                <target>Username or Email</target>
+            </trans-unit>
+            <trans-unit id="tango.label_password">
+                <source>tango.label_password</source>
+                <target>Password</target>
+            </trans-unit>
+
+            <trans-unit id="tango.show_my_profile">
+                <source>tango.show_my_profile</source>
                 <target>My profile</target>
             </trans-unit>
-            <trans-unit id="tangoman.edit_my_profile">
-                <source>tangoman.edit_my_profile</source>
+            <trans-unit id="tango.edit_my_profile">
+                <source>tango.edit_my_profile</source>
                 <target>Edit my profile</target>
             </trans-unit>
-            <trans-unit id="tangoman.quit_impersonation">
-                <source>tangoman.quit_impersonation</source>
+            <trans-unit id="tango.quit_impersonation">
+                <source>tango.quit_impersonation</source>
                 <target>Quit impersonation</target>
             </trans-unit>
-            <trans-unit id="tangoman.logout">
-                <source>tangoman.logout</source>
+            <trans-unit id="tango.logout">
+                <source>tango.logout</source>
                 <target>Logout</target>
             </trans-unit>
-            <trans-unit id="tangoman.register">
-                <source>tangoman.register</source>
+            <trans-unit id="tango.register">
+                <source>tango.register</source>
                 <target>Register</target>
             </trans-unit>
-            <trans-unit id="tangoman.login">
-                <source>tangoman.login</source>
+            <trans-unit id="tango.login">
+                <source>tango.login</source>
                 <target>Login</target>
             </trans-unit>
         </body>
