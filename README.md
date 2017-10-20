@@ -333,7 +333,6 @@ Options
 | roles     | optional  | ['IS_AUTHENTICATED_ANONYMOUSLY'] |
 | value     | mandatory | null                             |
 
-
 Examples
 ========
 
@@ -490,7 +489,6 @@ Button Groups
     }]
 ```
 
-
 **TangoMan Front Bundle** classes
 =================================
 
@@ -513,7 +511,6 @@ Error
 When you get to see this :
 ![twig error][twig-error]
 It means your json is invalid. Don't worry you probrably just missed a comma somewhere.
-
 
 Bootstrap 3 toggles
 ===================

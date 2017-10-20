@@ -2,9 +2,24 @@
  * TangoMan Front Bundle
  *
  * @author    Matthias Morin <matthias.morin@gmail.com>
- * @modified  15:00 13/10/2017
+ * @modified  12:00 20/10/2017
  * @version   1.0.0
  */
+
+/**
+ * Menu carets
+ */
+.tango-caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: middle;
+	border-top: 4px dashed;
+	border-top: 4px solid;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	margin-left: 6px;
+}
 
 /**
  * Links

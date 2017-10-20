@@ -21,9 +21,11 @@
             {% if button.route is defined and button.route %}
                 {# append parameters to query string #}
                 {% if button.parameters is defined and button.parameters %}
-                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"
+                    {#href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all|merge(button.parameters))) }}"#}
+                    href="{{ path(button.route, button.parameters) }}"
                 {% else %}
-                    href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"
+                    {#href="{{ path(button.route, app.request.attributes.get('_route_params')|merge(app.request.query.all)) }}"#}
+                    href="{{ path(button.route) }}"
                 {% endif %}
             {% elseif button.href is defined and button.href %}
                 {# append target #}

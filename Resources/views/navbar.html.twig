@@ -18,7 +18,7 @@
                                 <span class="tango-link-icon {{ menu.icon }}" aria-hidden="true"></span>
                             {% endif %}
                             {% if menu.label is defined and menu.label %}
-                                {{ menu.label|trans }}
+                                <span class="tango-link-label">{{ menu.label|trans }}</span>
                             {% endif %}
                         </a>
                     {% endif %}
@@ -42,15 +42,14 @@
                                                                       aria-hidden="true"></span>
                                                             {% endif %}
                                                             {% if item.subMenu.label is defined and item.subMenu.label %}
-                                                                {{ item.subMenu.label|trans }}
+                                                                <span class="tango-link-label">{{ item.subMenu.label|trans }}</span>
                                                             {% endif %}
-                                                            <span class="caret"></span>
+                                                            <span class="tango-caret"></span>
                                                         </a>
                                                         <ul class="dropdown-menu">
                                                             {% for subItem in item.subMenu.items %}
                                                                 {% if is_granted(subItem.roles ?? ['IS_AUTHENTICATED_ANONYMOUSLY']) %}
                                                                     {% if route_granted(app.request.attributes.get('_route'), subItem.pages ?? []) %}
-
                                                                         {% if subItem.divider is defined and subItem.divider %}
                                                                             <li class="divider" role="separator"></li>
                                                                         {% elseif subItem.route is defined and subItem.route %}
@@ -70,7 +69,7 @@
                                                                                           aria-hidden="true"></span>
                                                                                 {% endif %}
                                                                                 {% if subItem.label is defined and subItem.label %}
-                                                                                    {{ subItem.label|trans }}
+                                                                                    <span class="tango-link-label">{{ subItem.label|trans }}</span>
                                                                                 {% endif %}
                                                                             </li>
                                                                         {% endif %}
@@ -106,34 +105,34 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-haspopup="true" aria-expanded="false">
                                     <span class="tango-link-icon glyphicon glyphicon-user"></span>
-                                    {{ app.user.username }}
-                                    <span class="caret"></span>
+                                    <span class="tango-link-label">{{ app.user.username }}</span>
+                                    <span class="tango-caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li{% if app.request.attributes.get('_route') ends with 'show' %} class="active"{% endif %}>
                                         <a href="{{ path('app_user_show', { 'slug': app.user.slug }) }}">
                                             <span class="tango-link-icon glyphicon glyphicon-user"></span>
-                                            {{ 'tangoman.show_my_profile'|trans }}
+                                            <span class="tango-link-label">{{ 'tangoman.show_my_profile'|trans }}</span>
                                         </a>
                                     </li>
                                     <li{% if app.request.attributes.get('_route') ends with 'edit' %} class="active"{% endif %}>
                                         <a href="{{ path('app_user_edit', { 'slug': app.user.slug }) }}">
                                             <span class="tango-link-icon glyphicon glyphicon-edit"></span>
-                                            {{ 'tangoman.edit_my_profile'|trans }}
+                                            <span class="tango-link-label">{{ 'tangoman.edit_my_profile'|trans }}</span>
                                         </a>
                                     </li>
                                     {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                                         <li class="active">
                                             <a href="{{ path('homepage', {'_switch_user': '_exit'}) }}">
                                                 <span class="tango-link-icon glyphicon glyphicon-refresh"></span>
-                                                {{ 'tangoman.quit_impersonation'|trans }}
+                                                <span class="tango-link-label">{{ 'tangoman.quit_impersonation'|trans }}</span>
                                             </a>
                                         </li>
                                     {% endif %}
                                     <li>
                                         <a href="{{ path('app_logout') }}">
                                             <span class="tango-link-icon glyphicon glyphicon-off"></span>
-                                            {{ 'tangoman.logout'|trans }}
+                                            <span class="tango-link-label">{{ 'tangoman.logout'|trans }}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -141,12 +140,12 @@
                         {% else %}
                             <li><a href="{{ path('app_security_register') }}">
                                     <span class="tango-link-icon glyphicon glyphicon-floppy-disk"></span>
-                                    {{ 'tangoman.register'|trans }}
+                                    <span class="tango-link-label">{{ 'tangoman.register'|trans }}</span>
                                 </a>
                             </li>
                             <li><a href="{{ path('app_login') }}">
                                     <span class="tango-link-icon glyphicon glyphicon-lock"></span>
-                                    {{ 'tangoman.login'|trans }}
+                                    <span class="tango-link-label">{{ 'tangoman.login'|trans }}</span>
                                 </a>
                             </li>
                         {% endif %}
