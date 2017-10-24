@@ -8,48 +8,51 @@
                     id="{{ th.id }}"
                 {% endif %}
 
+                {% if th.parameters is defined and th.parameters %}
+                    href="{{ path(th.route, app.request.query.all|merge(th.parameters)|merge({'page': null, 'order': th.name, 'way': app.request.query.get('order') == th.name and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}"
+                {% else %}
                     href="{{ path(th.route, app.request.query.all|merge({'page': null, 'order': th.name, 'way': app.request.query.get('order') == th.name and app.request.query.get('way', way) == 'ASC' ? 'DESC' : 'ASC'})) }}"
+                {% endif %}
 
-            {# append attributes #}
-            {% if th.attributes is defined and th.attributes %}
-                {% for key, value in th.attributes %}
-                    {{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# append attributes #}
+                {% if th.attributes is defined and th.attributes %}
+                    {% for key, value in th.attributes %}
+                        {{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
 
-            {# styles #}
-            {% if th.class is defined and th.class %}
-                class="{{ th.class }}"
-            {% endif %}
+                {# styles #}
+                {% if th.class is defined and th.class %}
+                    class="{{ th.class }}"
+                {% endif %}
 
-            {# append data-attributes #}
-            {% if th.data is defined and th.data %}
-                {% for key, value in th.data %}
-                    data-{{ key }}="{{ value }}"
-                {% endfor %}
-            {% endif %}
+                {# append data-attributes #}
+                {% if th.data is defined and th.data %}
+                    {% for key, value in th.data %}
+                        data-{{ key }}="{{ value }}"
+                    {% endfor %}
+                {% endif %}
 
-            {# disabled #}
-            {% if th.disabled is defined and th.disabled %}
-                disabled="disabled"
-            {% endif %}
-            >
+                {# disabled #}
+                {% if th.disabled is defined and th.disabled %}
+                    disabled="disabled"
+                {% endif %}
+                >
 
-            {# icon #}
-            {% if th.icon is defined and th.icon %}
-                <span class="tango-th-icon {{ th.icon }}" aria-hidden="true"></span>
-            {% endif %}
+                {# icon #}
+                {% if th.icon is defined and th.icon %}
+                    <span class="tango-th-icon {{ th.icon }}" aria-hidden="true"></span>
+                {% endif %}
 
-            {# label #}
-            {% if th.label is defined and th.label %}
-                <span class="tango-th-label">{{ th.label|trans }}</span>
-            {% endif %}
+                {# label #}
+                {% if th.label is defined and th.label %}
+                    <span class="tango-th-label">{{ th.label|trans }}</span>
+                {% endif %}
 
-            {# badge #}
-            {% if th.badge is defined and th.badge %}
-                <span class="tango-th-badge badge">{{ th.badge }}</span>
-            {% endif %}
-
+                {# badge #}
+                {% if th.badge is defined and th.badge %}
+                    <span class="tango-th-badge badge">{{ th.badge }}</span>
+                {% endif %}
             </a>
 
         {% endspaceless %}
