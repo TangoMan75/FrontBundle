@@ -492,18 +492,18 @@ Button Groups
 **TangoMan Front Bundle** classes
 =================================
 
-.tango-actions
-.tango-btn-group
-.tango-button-badge
-.tango-button-icon
-.tango-form
-.tango-form-btn
-.tango-form-checkbox
-.tango-form-group
-.tango-link-badge
-.tango-link-icon
-.tango-thead
-.tango-tooltip-wrapper
+- .tango-actions
+- .tango-btn-group
+- .tango-button-badge
+- .tango-button-icon
+- .tango-form
+- .tango-form-btn
+- .tango-form-checkbox
+- .tango-form-group
+- .tango-link-badge
+- .tango-link-icon
+- .tango-thead
+- .tango-tooltip-wrapper
 
 Error
 =====
@@ -515,17 +515,17 @@ It means your json is invalid. Don't worry you probrably just missed a comma som
 Bootstrap 3 toggles
 ===================
 
-| Title             | Toggle                   | Parameters                                       | Attributes      | Link                                                                  |
-| :---------------- | :----------------------- | :----------------------------------------------- | :-------------- | :-------------------------------------------------------------------- |
-| Button            | data-toggle="button"     |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#buttons-single-toggle   |
-| Buttons           | data-toggle="buttons"    |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#buttons                 |
-| Collapse          | data-toggle="collapse"   | data-target data-parent href                     |                 | https://getbootstrap.com/docs/3.3/javascript/#collapse                |
-| Dropdowns         | data-toggle="dropdown"   |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#dropdowns               |
-| Modals            | data-toggle="modal"      | data-target="..."                                | rel="modal"     | https://getbootstrap.com/docs/3.3/javascript/#modals                  |
-| Popovers          | data-toggle="popover"    | data-placement data-trigger data-content title   | rel="popover"   | https://getbootstrap.com/docs/3.3/javascript/#popovers                |
-| Togglable pills   | data-toggle="pill"       |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#pills                   |
-| Togglable tabs    | data-toggle="tab"        |                                                  |                 | https://getbootstrap.com/docs/3.3/javascript/#tabs                    |
-| Tooltips          | data-toggle="tooltip"    | data-original-title data-placement title         |                 | https://getbootstrap.com/docs/3.3/javascript/#tooltips                |
+|      Title      |         Toggle         |                   Parameters                   |   Attributes  |                                             Link                                             |
+|-----------------|------------------------|------------------------------------------------|---------------|----------------------------------------------------------------------------------------------|
+| Button          | data-toggle="button"   |                                                |               | [buttons-single-toggle](https://getbootstrap.com/docs/3.3/javascript#buttons-single-toggle) |
+| Buttons         | data-toggle="buttons"  |                                                |               | [buttons](https://getbootstrap.com/docs/3.3/javascript#buttons)                             |
+| Collapse        | data-toggle="collapse" | data-target data-parent href                   |               | [collapse](https://getbootstrap.com/docs/3.3/javascript#collapse)                           |
+| Dropdowns       | data-toggle="dropdown" |                                                |               | [dropdowns](https://getbootstrap.com/docs/3.3/javascript#dropdowns)                         |
+| Modals          | data-toggle="modal"    | data-target="..."                              | rel="modal"   | [modals](https://getbootstrap.com/docs/3.3/javascript#modals)                               |
+| Popovers        | data-toggle="popover"  | data-placement data-trigger data-content title | rel="popover" | [popovers](https://getbootstrap.com/docs/3.3/javascript#popovers)                           |
+| Togglable pills | data-toggle="pill"     |                                                |               | [pills](https://getbootstrap.com/docs/3.3/javascript#pills)                                 |
+| Togglable tabs  | data-toggle="tab"      |                                                |               | [tabs](https://getbootstrap.com/docs/3.3/javascript#tabs)                                   |
+| Tooltips        | data-toggle="tooltip"  | data-original-title data-placement title       |               | [tooltips](https://getbootstrap.com/docs/3.3/javascript#tooltips)                           |
 
 Note
 ====
