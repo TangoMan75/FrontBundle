@@ -20,7 +20,7 @@
                                 <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3{% if input.label is not defined %} tango-form-group{% endif %}">
                                     {% include '@TangoManFront/radio.html.twig' %}
                                 </div>
-                            {% elseif input.type == 'email' or input.type == 'number' or input.type == 'password' or input.type == 'search' or input.type == 'tel' or input.type == 'text' or input.type == 'url' %}
+                            {% elseif input.type == 'date' or input.type == 'email' or input.type == 'number' or input.type == 'password' or input.type == 'search' or input.type == 'tel' or input.type == 'text' or input.type == 'time' or input.type == 'url' %}
                                 <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3{% if input.label is not defined %} tango-form-group{% endif %}">
                                     {% include '@TangoManFront/input.html.twig' %}
                                 </div>
