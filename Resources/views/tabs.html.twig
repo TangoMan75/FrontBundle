@@ -8,6 +8,8 @@
                         {% if route_granted(app.request.attributes.get('_route'), item.pages ?? []) %}
                             {% if item.active is defined %}
                             <li{% if app.request.attributes.get('_route') ends with item.active %} class="active"{% endif %}>
+                            {% elseif item.disabled is defined and item.disabled %}
+                                <li class="disabled">
                             {% else %}
                                 <li>
                             {% endif %}
