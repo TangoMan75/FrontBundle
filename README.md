@@ -108,15 +108,15 @@ Assets should copy automatically, if for whatever reason you need to reinstall t
 $ php bin/console assets:install TangoManFrontBundle
 ```
 
-In order for elements to display properly include `<link>` and `<script>` tags inside your stylesheet block...
+In order for elements to display properly include the following `<link>` tag in your `::base.html.twig`
+Wich will enable **TangoMan Front Bundle** custom css. (You can use your own css is you want to.)
 ```twig
 {% block stylesheet %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/tangomanfront/css/tangoman-front-bundle.css') }}">
 {% endblock %}
 ```
-
-...and your javascript block
+In order for forms to behave like expected include the following `<script>` tags inside your javascript block.
 ```twig
 {% block javascript %}
     {{ parent() }}
