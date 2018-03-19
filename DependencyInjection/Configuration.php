@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('tangoman_list_manager');
+        $rootNode = $treeBuilder->root('tangoman_front');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
