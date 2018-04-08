@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -11,6 +17,7 @@ use TangoMan\FrontBundle\Model\Th;
  */
 class Thead implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
 
     /**
@@ -89,7 +96,7 @@ class Thead implements \JsonSerializable
      */
     public function addTh(Th $th)
     {
-        if (!$this->hasTh($th)) {
+        if ( ! $this->hasTh($th)) {
             $this->ths[] = $th;
         }
 
@@ -106,7 +113,7 @@ class Thead implements \JsonSerializable
         $ths = $this->ths;
 
         if ($this->hasth($th)) {
-            $remove[] = $th;
+            $remove[]  = $th;
             $this->ths = array_diff($ths, $remove);
         }
 

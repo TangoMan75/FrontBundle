@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -11,6 +17,7 @@ use TangoMan\FrontBundle\Model\SearchOption;
  */
 class SearchInput implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
 
     /**
@@ -206,7 +213,7 @@ class SearchInput implements \JsonSerializable
      */
     public function setOptions($options)
     {
-        $this->type = 'select';
+        $this->type    = 'select';
         $this->options = $options;
 
         return $this;
@@ -242,7 +249,7 @@ class SearchInput implements \JsonSerializable
     public function addOption(SearchOption $option)
     {
         $this->type = 'select';
-        if (!$this->hasOption($option)) {
+        if ( ! $this->hasOption($option)) {
             $this->options[] = $option;
         }
 
@@ -259,7 +266,7 @@ class SearchInput implements \JsonSerializable
         $options = $this->options;
 
         if ($this->hasOption($option)) {
-            $remove[] = $option;
+            $remove[]      = $option;
             $this->options = array_diff($options, $remove);
         }
 

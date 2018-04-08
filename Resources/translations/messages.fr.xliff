@@ -1,4 +1,13 @@
 <?xml version="1.0"?>
+<!--
+  ~ This file is part of the TangoManCMS package.
+  ~
+  ~ Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+  ~
+  ~ This source file is subject to the MIT license that is bundled
+  ~ with this source code in the file LICENSE.
+  -->
+
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
         <body>

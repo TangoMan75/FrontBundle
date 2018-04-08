@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model\Traits;
 
@@ -9,6 +15,7 @@ namespace TangoMan\FrontBundle\Model\Traits;
  */
 trait IsProtected
 {
+
     /**
      * Pages where element should appear
      * e.g: ['app_admin_user_index','app_admin']
@@ -69,7 +76,7 @@ trait IsProtected
      */
     public function addPage($page)
     {
-        if (!$this->hasPage($page)) {
+        if ( ! $this->hasPage($page)) {
             $this->pages[] = $page;
         }
 
@@ -86,7 +93,7 @@ trait IsProtected
         $pages = $this->pages;
 
         if ($this->hasPage($page)) {
-            $remove[] = $page;
+            $remove[]    = $page;
             $this->pages = array_diff($pages, $remove);
         }
 
@@ -136,7 +143,7 @@ trait IsProtected
      */
     public function addRole($role)
     {
-        if (!$this->hasRole($role)) {
+        if ( ! $this->hasRole($role)) {
             $this->roles[] = $role;
         }
 
@@ -153,7 +160,7 @@ trait IsProtected
         $roles = $this->roles;
 
         if ($this->hasRole($role)) {
-            $remove[] = $role;
+            $remove[]    = $role;
             $this->roles = array_diff($roles, $remove);
         }
 

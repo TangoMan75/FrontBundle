@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model\Traits;
 
@@ -9,6 +15,7 @@ namespace TangoMan\FrontBundle\Model\Traits;
  */
 trait HasStyles
 {
+
     /**
      * @var array
      */
@@ -23,12 +30,13 @@ trait HasStyles
     public function getStyles()
     {
         return implode(
-            ';', array_map(
-                   function ($array) {
-                       return implode(': ', $array);
-                   },
-                   $this->styles
-               )
+            ';',
+            array_map(
+                function ($array) {
+                    return implode(': ', $array);
+                },
+                $this->styles
+            )
         );
     }
 
@@ -46,7 +54,7 @@ trait HasStyles
         foreach ($array as $style) {
             $pair = explode(':', $style);
             if (count($pair) == 2) {
-                $key = trim($pair[0]);
+                $key   = trim($pair[0]);
                 $value = trim($pair[1]);
                 $this->addStyle($key, $value);
             }

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -11,6 +17,7 @@ use TangoMan\FrontBundle\Model\SearchInput;
  */
 class SearchForm implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
 
     /**
@@ -64,7 +71,7 @@ class SearchForm implements \JsonSerializable
      */
     public function addInput(SearchInput $input)
     {
-        if (!$this->hasInput($input)) {
+        if ( ! $this->hasInput($input)) {
             $this->inputs[] = $input;
         }
 
@@ -81,7 +88,7 @@ class SearchForm implements \JsonSerializable
         $inputs = $this->inputs;
 
         if ($this->hasInput($input)) {
-            $remove[] = $input;
+            $remove[]     = $input;
             $this->inputs = array_diff($inputs, $remove);
         }
 

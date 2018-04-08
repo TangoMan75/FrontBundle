@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Twig\Extension;
 
@@ -6,6 +12,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class FrontExtension extends \Twig_Extension
 {
+
     /**
      * @var \Twig_Environment
      */
@@ -29,10 +36,12 @@ class FrontExtension extends \Twig_Extension
      *
      * @param \Twig_Environment $template
      */
-    public function __construct(\Twig_Environment $template, RequestStack $requestStack)
-    {
+    public function __construct(
+        \Twig_Environment $template,
+        RequestStack $requestStack
+    ) {
         $this->template = $template;
-        $this->request = $requestStack->getCurrentRequest();
+        $this->request  = $requestStack->getCurrentRequest();
     }
 
     /**
@@ -51,7 +60,9 @@ class FrontExtension extends \Twig_Extension
                 'menu', [$this, 'menuFunction'], ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
-                'searchForm', [$this, 'searchFormFunction'], ['is_safe' => ['html']]
+                'searchForm',
+                [$this, 'searchFormFunction'],
+                ['is_safe' => ['html']]
             ),
             new \Twig_SimpleFunction(
                 'thead', [$this, 'theadFunction'], ['is_safe' => ['html']]
@@ -305,60 +316,60 @@ class FrontExtension extends \Twig_Extension
                 case 'button':
                 case 'reset':
                 case 'submit':
-                    $result['tag'] = 'button';
+                    $result['tag']        = 'button';
                     $result['attributes'] = ['type' => $button['type']];
                     break;
                 case 'dismiss':
-                    $result['tag'] = 'button';
-                    $result['data'] = ['dismiss' => 'modal'];
+                    $result['tag']        = 'button';
+                    $result['data']       = ['dismiss' => 'modal'];
                     $result['attributes'] = ['type' => 'button'];
                     break;
             }
         }
 
-        if (isset($button['toggle']) && !$flag) {
-            $flag = true;
+        if (isset($button['toggle']) && ! $flag) {
+            $flag                 = true;
             $result['attributes'] = [
                 'aria-pressed' => 'false',
                 'autocomplete' => 'off',
             ];
-            $result['data'] = [
+            $result['data']       = [
                 'toggle' => 'button',
             ];
         }
 
-        if (isset($button['dropdown']) && !$flag) {
-            $flag = true;
+        if (isset($button['dropdown']) && ! $flag) {
+            $flag                 = true;
             $result['attributes'] = [
                 'aria-haspopup' => 'true',
                 'aria-expanded' => 'false',
             ];
-            $result['data'] = [
+            $result['data']       = [
                 'toggle' => 'dropdown',
             ];
         }
 
-        if (isset($button['collapse']) && !$flag) {
-            $flag = true;
+        if (isset($button['collapse']) && ! $flag) {
+            $flag           = true;
             $result['data'] = [
                 'toggle' => 'collapse',
                 'target' => $button['collapse'],
             ];
         }
 
-        if (isset($button['modal']) && !$flag) {
-            $flag = true;
-            $result['tag'] = 'button';
+        if (isset($button['modal']) && ! $flag) {
+            $flag                 = true;
+            $result['tag']        = 'button';
             $result['attributes'] = ['rel' => 'modal'];
-            $result['data'] = [
+            $result['data']       = [
                 'toggle' => 'modal',
                 'target' => $button['modal'],
             ];
         }
 
-        if (isset($button['popover']) && !$flag) {
-            $flag = true;
-            $result['tag'] = 'button';
+        if (isset($button['popover']) && ! $flag) {
+            $flag           = true;
+            $result['tag']  = 'button';
             $result['data'] = [
                 'toggle'    => 'popover',
                 'placement' => 'top',
@@ -367,16 +378,16 @@ class FrontExtension extends \Twig_Extension
             ];
         }
 
-        if (isset($button['tab']) && !$flag) {
-            $flag = true;
+        if (isset($button['tab']) && ! $flag) {
+            $flag                 = true;
             $result['attributes'] = ['role' => 'tab'];
-            $result['data'] = ['toggle' => 'tab'];
+            $result['data']       = ['toggle' => 'tab'];
         }
 
-        if (isset($button['pill']) && !$flag) {
-            $flag = true;
+        if (isset($button['pill']) && ! $flag) {
+            $flag                 = true;
             $result['attributes'] = ['role' => 'tab'];
-            $result['data'] = ['toggle' => 'pill'];
+            $result['data']       = ['toggle' => 'pill'];
         }
 
         if ($flag) {

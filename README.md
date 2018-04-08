@@ -508,8 +508,9 @@ Button Groups
 Error
 =====
 
-When you get to see this :
-![twig error][twig-error]
+When you get to see `Twig_Error_Runtime` Symfony Exception
+> Impossible to access an attribute ("foobar") on a null variable.
+
 It means your json is invalid. Don't worry you probrably just missed a comma somewhere.
 
 Bootstrap 3 toggles
@@ -535,7 +536,7 @@ If you find any bug please report here : [Issues](https://github.com/TangoMan75/
 License
 =======
 
-Copyrights (c) 2017 Matthias Morin
+Copyright (c) 2018 Matthias Morin
 
 [![License][license-MIT]][license-url]
 Distributed under the MIT license.
@@ -546,7 +547,5 @@ And follow me on GitHub: [TangoMan75](https://github.com/TangoMan75)
 
 [Matthias Morin | LinkedIn](https://www.linkedin.com/in/morinmatthias)
 
-[license-GPL]: https://img.shields.io/badge/Licence-GPLv3.0-green.svg
 [license-MIT]: https://img.shields.io/badge/Licence-MIT-green.svg
 [license-url]: LICENSE
-[twig-error]: Resources/doc/error-invalid-json.jpg

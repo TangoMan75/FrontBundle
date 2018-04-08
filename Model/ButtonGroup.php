@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -11,6 +17,7 @@ use TangoMan\FrontBundle\Model\Button;
  */
 class ButtonGroup implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
 
     /**
@@ -98,7 +105,7 @@ class ButtonGroup implements \JsonSerializable
      */
     public function addRole($role)
     {
-        if (!$this->hasRole($role)) {
+        if ( ! $this->hasRole($role)) {
             $this->roles[] = $role;
         }
 
@@ -115,7 +122,7 @@ class ButtonGroup implements \JsonSerializable
         $roles = $this->roles;
 
         if ($this->hasRole($role)) {
-            $remove[] = $role;
+            $remove[]    = $role;
             $this->roles = array_diff($roles, $remove);
         }
 
@@ -163,7 +170,7 @@ class ButtonGroup implements \JsonSerializable
      */
     public function addButton($button)
     {
-        if (!$this->hasButton($button)) {
+        if ( ! $this->hasButton($button)) {
             $this->buttons[] = $button;
         }
 
@@ -180,7 +187,7 @@ class ButtonGroup implements \JsonSerializable
         $buttons = $this->buttons;
 
         if ($this->hasButton($button)) {
-            $remove[] = $button;
+            $remove[]      = $button;
             $this->buttons = array_diff($buttons, $remove);
         }
 

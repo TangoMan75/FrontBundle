@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model\Traits;
 
@@ -9,6 +15,7 @@ namespace TangoMan\FrontBundle\Model\Traits;
  */
 trait HasClass
 {
+
     /**
      * @var array
      */
@@ -35,7 +42,7 @@ trait HasClass
         $array = explode(' ', $classes);
         foreach ($array as $class) {
             $class = $this->formatClass($class);
-            if (!in_array($class, $this->classes)) {
+            if ( ! in_array($class, $this->classes)) {
                 $this->classes[] = $class;
             }
         }

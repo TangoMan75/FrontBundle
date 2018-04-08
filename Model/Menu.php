@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -11,6 +17,7 @@ use TangoMan\FrontBundle\Model\Item;
  */
 class Menu implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
     use Traits\IsStyled;
 
@@ -174,7 +181,7 @@ class Menu implements \JsonSerializable
      */
     public function addPage($page)
     {
-        if (!$this->hasPage($page)) {
+        if ( ! $this->hasPage($page)) {
             $this->pages[] = $page;
         }
 
@@ -191,7 +198,7 @@ class Menu implements \JsonSerializable
         $pages = $this->pages;
 
         if ($this->hasPage($page)) {
-            $remove[] = $page;
+            $remove[]    = $page;
             $this->pages = array_diff($pages, $remove);
         }
 
@@ -239,7 +246,7 @@ class Menu implements \JsonSerializable
      */
     public function addRole($role)
     {
-        if (!$this->hasRole($role)) {
+        if ( ! $this->hasRole($role)) {
             $this->roles[] = $role;
         }
 
@@ -256,7 +263,7 @@ class Menu implements \JsonSerializable
         $roles = $this->roles;
 
         if ($this->hasRole($role)) {
-            $remove[] = $role;
+            $remove[]    = $role;
             $this->roles = array_diff($roles, $remove);
         }
 
@@ -304,7 +311,7 @@ class Menu implements \JsonSerializable
      */
     public function addItem(Item $item)
     {
-        if (!$this->hasItem($item)) {
+        if ( ! $this->hasItem($item)) {
             $this->items[] = $item;
         }
 
@@ -321,7 +328,7 @@ class Menu implements \JsonSerializable
         $items = $this->items;
 
         if ($this->hasItem($item)) {
-            $remove[] = $item;
+            $remove[]    = $item;
             $this->items = array_diff($items, $remove);
         }
 

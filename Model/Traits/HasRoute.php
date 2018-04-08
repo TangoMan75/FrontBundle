@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model\Traits;
 
@@ -9,6 +15,7 @@ namespace TangoMan\FrontBundle\Model\Traits;
  */
 trait HasRoute
 {
+
     /**
      * Hyperlink route
      * e.g: 'app_admin_user_index'
@@ -69,7 +76,7 @@ trait HasRoute
      */
     public function setCallback($callback)
     {
-        if (!$this->hasParameter('callback')) {
+        if ( ! $this->hasParameter('callback')) {
             $this->addParameter('callback', $callback);
         }
 
@@ -93,7 +100,7 @@ trait HasRoute
      */
     public function setId($id)
     {
-        if (!$this->hasParameter('id')) {
+        if ( ! $this->hasParameter('id')) {
             $this->addParameter('id', $id);
         }
 
@@ -117,7 +124,7 @@ trait HasRoute
      */
     public function setSlug($slug)
     {
-        if (!$this->hasParameter('slug')) {
+        if ( ! $this->hasParameter('slug')) {
             $this->addParameter('slug', $slug);
         }
 

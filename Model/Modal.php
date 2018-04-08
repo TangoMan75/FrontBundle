@@ -1,4 +1,10 @@
 <?php
+/**
+ * Copyright (c) 2018 Matthias Morin <matthias.morin@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace TangoMan\FrontBundle\Model;
 
@@ -9,6 +15,7 @@ namespace TangoMan\FrontBundle\Model;
  */
 class Modal implements \JsonSerializable
 {
+
     use Traits\JsonSerializable;
 
     /**
@@ -222,7 +229,7 @@ class Modal implements \JsonSerializable
      */
     public function addButton($button)
     {
-        if (!$this->hasButton($button)) {
+        if ( ! $this->hasButton($button)) {
             $this->buttons[] = $button;
         }
 
@@ -239,7 +246,7 @@ class Modal implements \JsonSerializable
         $buttons = $this->buttons;
 
         if ($this->hasButton($button)) {
-            $remove[] = $button;
+            $remove[]      = $button;
             $this->buttons = array_diff($buttons, $remove);
         }
 
