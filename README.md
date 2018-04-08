@@ -33,9 +33,9 @@ Links, buttons, menu items, tabs can :
 - Own translatable labels
 - Own badges
 - Own parameters
-- Be disabled
-- Be displayed on specific pages
-- Be firewalled
+- Being disabled
+- Being displayed on specific pages
+- Being firewalled
 - Trigger callbacks
 - Show tooltips
 - Toggle popovers
